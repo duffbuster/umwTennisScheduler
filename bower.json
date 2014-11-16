@@ -1,0 +1,22 @@
+{
+    "name": "UMW Tennis Center Scheduler",
+    "version": "0.0.0",
+    "description": "A scheduling app for the UMW Tennis Center",
+    "author": "Colin Mackey",
+    "homepage": "https://github.com/duffbuster/umwTennisScheduler",
+    "ignore": [
+        "**/.*",
+        "test*",
+        "demo*",
+        "gruntFile.js",
+        "package.json"
+    ],
+    "dependencies": {
+        "angular": "1.2.26",
+        "fullcalendar": "2.1.1",
+        "moment": "2.*"
+    },
+    "resolutions": {
+        "angular": "1.2.26"
+    }
+}

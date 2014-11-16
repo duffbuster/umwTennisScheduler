@@ -1,5 +1,6 @@
 logs/*
 !.gitkeep
+.idea
 tmp
 .DS_Store
 .idea
