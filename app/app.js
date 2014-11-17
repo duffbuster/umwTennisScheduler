@@ -77,6 +77,13 @@ app.controller('AlertCtrl', function($scope) {
     $scope.clear = function() {
         $scope.mytime = null;
     };
+}).controller('databaseCtrl', function($scope, $html) {
+    getEvents();
+    function getEvents() {
+        $http.get("/app/database/getEvents.php").success(function(data) {
+            $scope.events = data;
+        });
+    };
 });
 
 /*function databaseController($scope, $http) {
