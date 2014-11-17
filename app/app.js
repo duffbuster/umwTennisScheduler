@@ -79,10 +79,10 @@ app.controller('AlertCtrl', function($scope) {
     };
 }).controller('databaseCtrl', function($scope, $http) {
     $scope.getEvents = function() {
-        $http.get("/app/database/getEvents.php").success(function(data) {
+        $http.get("app/database/getEvents.php").success(function(data) {
             $scope.events = data;
         });
-    }
+    };
 });
 
 /*function databaseController($scope, $http) {
