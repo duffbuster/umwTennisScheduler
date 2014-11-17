@@ -70,9 +70,9 @@
         </div>
     </div>
     
-    <div class="container" ng-controller="databaseCtrl">
+    <div class="container" ng-controller="databaseCtrl" style="margin-bottom: 20px;">
         <button class="btn btn-default" ng-click="getEvents()">Get Events</button>
-        <pre>{{events}}</pre>
+        <pre ng-if="events" style="margin-top: 5px;">{{events}}</pre>
     </div>
     
     <div class="container" ng-controller="DatepickerCtrl">

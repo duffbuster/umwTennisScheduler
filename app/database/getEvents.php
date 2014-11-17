@@ -1,5 +1,5 @@
 <?php
-    require_once '/app/database/config.php'; // database connection script
+    require '/app/database/config.php'; // database connection script
     
     try {
         $stmt = $conn->prepare("SELECT * FROM events");

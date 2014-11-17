@@ -1,18 +1,18 @@
 var app = angular.module('tennisCenterApp', [/*'ui.calendar', */'ui.bootstrap']);
 
 app.controller('AlertCtrl', function($scope) {
-        $scope.alerts = [
-            { type: 'danger', msg: 'Oh snap! Change a few things and try submitting again.' },
-            { type: 'success', msg: 'Well done! You have successfully read this important alert message.' }
-        ];
-        
-        $scope.addAlert = function() {
-            $scope.alerts.push({msg: 'Alert!'});
-        };
-    
-        $scope.closeAlert = function(index) {
-            $scope.alerts.splice(index, 1);
-        };
+    $scope.alerts = [
+        { type: 'danger', msg: 'Oh snap! Change a few things and try submitting again.' },
+        { type: 'success', msg: 'Well done! You have successfully read this important alert message.' }
+    ];
+
+    $scope.addAlert = function() {
+        $scope.alerts.push({msg: 'Alert!'});
+    };
+
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
 }).controller('DatepickerCtrl', function($scope) {
     $scope.today = function() {
         $scope.dt = new Date();
@@ -78,9 +78,7 @@ app.controller('AlertCtrl', function($scope) {
         $scope.mytime = null;
     };
 }).controller('databaseCtrl', function($scope, $http) {
-    getEvents();
-    function getEvents() {
-        alert("hi");
+    $scope.getEvents = function() {
         $http.get("/app/database/getEvents.php").success(function(data) {
             $scope.events = data;
         });
