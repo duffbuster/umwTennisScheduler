@@ -9,8 +9,7 @@
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
         
         echo json_encode($result);
-    }
-    catch(PDOException $e) {
+    } catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
 ?>
