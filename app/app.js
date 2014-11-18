@@ -102,13 +102,12 @@ app.controller('AlertCtrl', function($scope) {
         $scope.allDay = false;
         $scope.isRepeating = false;
     };
-    
+    $scope.eventInfo = {};
     $scope.submit = function() {
-        // fix validation
         alert("Submit");
         // This isn't getting set
         $scope.eventInfo = {
-            event_sort_name: $scope.name.trim().toLowerCase().replace(/\s/g, '_').replace(/[^a-zA-Z]/g, ""),
+            event_sort_name: $scope.name.trim().toLowerCase().replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s/g, "_"),
             event_name: $scope.name.trim(),
             event_start_time: $scope.startTime.toTimeString(),
             event_end_time: $scope.endTime.toTimeString(),
