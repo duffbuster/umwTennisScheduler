@@ -51,7 +51,7 @@ app.controller('AlertCtrl', function($scope) {
     $scope.mytime = new Date();
 
     $scope.hstep = 1;
-    $scope.mstep = 15;
+    $scope.mstep = 1;
 
     $scope.options = {
         hstep: [1, 2, 3],
@@ -83,18 +83,28 @@ app.controller('AlertCtrl', function($scope) {
             $scope.events = data;
         });
     };
-}).controller('createEventCtrl', [$scope, function($scope, $http) {
-    $scope.name = "name";
+}).controller('createEventCtrl', function($scope, $http) {
+    $scope.name = null;
     $scope.startDate = new Date();
     $scope.startTime = new Date();
     $scope.endDate = new Date();
     $scope.endTime = new Date();
-    $scope.allDay = false;
-    $scope.isRepeating = false;
+    $scope.allDay = null;
+    $scope.isRepeating = null;
     
-    $scope.createEvent = function() {
+    $scope.clear = function() {
+        $scope.name = "";
+        $scope.startDate = null;
+        $scope.startTime = null;
+        $scope.endDate = null;
+        $scope.endtime = null;
+        $scope.allDay = false;
+        $scope.isRepeating = false;
+    };
+    
+    $scope.submit = function() {
         $http.post("/app/database/createEvent.php").success(function(data) {
             $scope.result = data;
         });
     };
-}]);
+});
