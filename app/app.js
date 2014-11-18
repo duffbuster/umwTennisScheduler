@@ -104,6 +104,7 @@ app.controller('AlertCtrl', function($scope) {
     };
     
     $scope.submit = function() {
+        // fix validation
         alert("Submit");
         // This isn't getting set
         $scope.eventInfo = {
