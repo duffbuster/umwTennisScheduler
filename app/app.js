@@ -83,4 +83,18 @@ app.controller('AlertCtrl', function($scope) {
             $scope.events = data;
         });
     };
-});
+}).controller('createEventCtrl', [$scope, function($scope, $http) {
+    $scope.name = "name";
+    $scope.startDate = new Date();
+    $scope.startTime = new Date();
+    $scope.endDate = new Date();
+    $scope.endTime = new Date();
+    $scope.allDay = false;
+    $scope.isRepeating = false;
+    
+    $scope.createEvent = function() {
+        $http.post("/app/database/createEvent.php").success(function(data) {
+            $scope.result = data;
+        });
+    };
+}]);
