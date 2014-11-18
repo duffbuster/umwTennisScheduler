@@ -1,4 +1,10 @@
 <?php
+    /*
+     * Class courtesy of Philip Brown
+     * http://culttt.com/2012/10/01/roll-your-own-pdo-php-class/
+     *
+     */
+
     class Database {
         private $host = DB_HOST;
         private $user = DB_USER;
