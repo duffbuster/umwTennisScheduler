@@ -1,14 +1,10 @@
 <?php
-    $username = "mackeyde_devteam";
-    $password = "3devTeam!";
-    $hostname = "localhost";
-    $database = "mackeyde_angularScheduler";
+    include 'database.php';
 
-    try {
-        $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password/*, array(PDO::ATTR_PERSISTENT => true)*/);
-        echo "Connected successfully";
-    } catch(PDOException $e) {
-        echo $e->getMessage();
-    }
-    $conn = null;
+    define("DB_HOST", "localhost");
+    define("DB_USER", "mackeyde_devteam");
+    define("DB_PASS", "3devTeam!");
+    define("DB_NAME", "mackeyde_angularScheduler");
+
+    $database = new Database();
 ?>
