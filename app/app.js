@@ -84,12 +84,3 @@ app.controller('AlertCtrl', function($scope) {
         });
     };
 });
-
-/*function databaseController($scope, $http) {
-    var site = "http://angular.mackeydev.com";
-    var page = "/mackeyde_angularScheduler";
-    $http.get(site + page).success(function(response) {
-        $scope.title = response;
-    });
-    
-}*/
