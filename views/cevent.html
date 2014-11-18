@@ -65,7 +65,7 @@
     </div>
     
     <div class="container" ng-controller="createEventCtrl">
-        <form name="form" role="form">
+        <form name="form" class="validate-form" role="form">
             <div ng-show="form.$invalid" class="alert alert-danger" role="alert">Please check that all fields are valid!</div>
             <div class="form-group">
                 <label for="eventName">Event Name</label>
@@ -115,8 +115,8 @@
             <!-- working -->
             <button class="btn btn-danger" ng-click="clear()">Clear</button>
         </form>
+        <pre ng-if="eventInfo">{{eventInfo}}</pre>
     </div>
-    <pre ng-if="eventInfo">{{eventInfo}}</pre>
     <footer class="footer">
         <div class="container">
             <p class="text-muted">Built with love by Colin Mackey, Evan Paige, and Scott Vaughn</p>
