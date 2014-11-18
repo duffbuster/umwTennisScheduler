@@ -5,4 +5,4 @@ A scheduling app for the UMW Tennis Center
 
 By Colin Mackey, Evan Paige, and Scott Vaughn.
 
-Hosted at [angular.mackeydev.com]{http://angular.mackeydev.com/}
+Hosted at http://angular.mackeydev.com/
