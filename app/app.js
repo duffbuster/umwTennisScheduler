@@ -14,6 +14,74 @@ app.controller('AlertCtrl', function($scope) {
     $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
     };
+}).controller('createEventCtrl', function($scope, $http) {
+    $scope.info = {
+        name: null,
+        startDate: new Date(),
+        endDate: new Date(),
+        startTime: new Date(),
+        endTime: new Date(),
+        allDay: null,
+        isRepeating: null
+    };
+    
+    $scope.clear = function() {
+        $scope.info.name = "";
+        $scope.info.startDate = new Date();
+        $scope.info.startTime = new Date();
+        $scope.info.endDate = new Date();
+        $scope.info.endtime = new Date();
+        $scope.info.allDay = false;
+        $scope.info.isRepeating = false;
+    };
+    
+    $scope.submit = function() {
+        $scope.eventInfo = {
+            event_sort_name: $scope.info.name.trim().toLowerCase().replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s/g, "_"),
+            event_name: $scope.info.name.trim(),
+            event_start_time: $scope.info.startTime.toLocaleTimeString,
+            event_end_time: $scope.info.endTime.toLocaleTimeString,
+            event_start_date: $scope.info.startDate.toString(),
+            event_end_date: $scope.info.endDate.toString(),
+            event_all_day: $scope.info.allDay ? 1 : 0,
+            event_recurring: $scope.info.isRepeating ? 1 : 0,
+            event_created: new Date().getTime().toJSON()
+            // TODO: capture user and push event_created_by
+        };
+        $http.post("/app/database/createEvent.php").success(function(data) {
+            $scope.result = data;
+        });
+    };
+}).controller('timeCtrl', function($scope, $log) {
+    $scope.mytime = new Date();
+
+    $scope.hstep = 1;
+    $scope.mstep = 1;
+
+    $scope.options = {
+        hstep: [1, 2, 3],
+        mstep: [1, 5, 10, 15, 25, 30]
+    };
+
+    $scope.ismeridian = true;
+    $scope.toggleMode = function() {
+        $scope.ismeridian = ! $scope.ismeridian;
+    };
+
+    $scope.update = function() {
+        var d = new Date();
+        d.setHours( 14 );
+        d.setMinutes( 0 );
+        $scope.mytime = d;
+    };
+
+    $scope.changed = function () {
+        console.log('Time changed to: ' + $scope.mytime);
+    };
+
+    $scope.clear = function() {
+        $scope.mytime = null;
+    };
 }).controller('DatepickerCtrl', function($scope) {
     $scope.today = function() {
         $scope.dt = new Date();
@@ -48,78 +116,10 @@ app.controller('AlertCtrl', function($scope) {
 
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
-}).controller('timeCtrl', function($scope, $log) {
-    $scope.mytime = new Date();
-
-    $scope.hstep = 1;
-    $scope.mstep = 1;
-
-    $scope.options = {
-        hstep: [1, 2, 3],
-        mstep: [1, 5, 10, 15, 25, 30]
-    };
-
-    $scope.ismeridian = true;
-    $scope.toggleMode = function() {
-        $scope.ismeridian = ! $scope.ismeridian;
-    };
-
-    $scope.update = function() {
-        var d = new Date();
-        d.setHours( 14 );
-        d.setMinutes( 0 );
-        $scope.mytime = d;
-    };
-
-    $scope.changed = function () {
-        console.log('Time changed to: ' + $scope.mytime);
-    };
-
-    $scope.clear = function() {
-        $scope.mytime = null;
-    };
 }).controller('databaseCtrl', function($scope, $http) {
     $scope.getEvents = function() {
         $http.get("/app/database/getEvents.php").success(function(data) {
             $scope.events = data;
-        });
-    };
-}).controller('createEventCtrl', function($scope, $http) {
-    $scope.name = null;
-    $scope.startDate = new Date();
-    $scope.startTime = new Date();
-    $scope.endDate = new Date();
-    $scope.endTime = new Date();
-    $scope.allDay = null;
-    $scope.isRepeating = null;
-    
-    $scope.clear = function() {
-        $scope.name = "";
-        $scope.startDate = null;
-        $scope.startTime = null;
-        $scope.endDate = null;
-        $scope.endtime = null;
-        $scope.allDay = false;
-        $scope.isRepeating = false;
-    };
-    $scope.eventInfo = {};
-    $scope.submit = function() {
-        alert("Submit");
-        // This isn't getting set
-        $scope.eventInfo = {
-            event_sort_name: $scope.name.trim().toLowerCase().replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s/g, "_"),
-            event_name: $scope.name.trim(),
-            event_start_time: $scope.startTime.toTimeString(),
-            event_end_time: $scope.endTime.toTimeString(),
-            event_start_date: $scope.startDate.toDateString(),
-            event_end_date: $scope.endDate.toDateString(),
-            event_all_day: $scope.allDay ? 1 : 0,
-            event_recurring: $scope.isRepeating ? 1 : 0,
-            event_created: new Date()
-            // TODO: capture user and push event_created_by
-        };
-        $http.post("/app/database/createEvent.php").success(function(data) {
-            $scope.result = data;
         });
     };
 });
