@@ -1,14 +1,19 @@
 var createEventControllers = angular.module('createEventControllers', []);
 
-createEventControllers.controller('createEventCtrl', function($scope, $http) {
+createEventControllers.factory('event', function() {
+    
+}).controller('createEventCtrl', function($scope, $http, Page) {
+    // TODO: create factories/services for this module
+    Page.setTitle('Create Event');
+    
     $scope.info = {
         name: null,
         startDate: new Date(),
         endDate: new Date(),
         startTime: new Date(),
         endTime: new Date(),
-        allDay: null,
-        isRepeating: null
+        allDay: false,
+        isRepeating: false
     };
     
     $scope.clear = function() {
@@ -31,11 +36,11 @@ createEventControllers.controller('createEventCtrl', function($scope, $http) {
             event_end_date: $scope.info.endDate.toString(),
             event_all_day: $scope.info.allDay ? 1 : 0,
             event_recurring: $scope.info.isRepeating ? 1 : 0,
-            event_created: new Date().getTime().toJSON()
+            event_created: new Date().toJSON()
             // TODO: capture user and push event_created_by
         };
-        $http.get("/app/database/createEvent.php?eventInfo="+$scope.eventInfo).success(function(data) {
+        /*$http.get("/app/database/createEvent.php?eventInfo="+$scope.eventInfo).success(function(data) {
             $scope.result = data;
-        });
+        });*/
     };
 });

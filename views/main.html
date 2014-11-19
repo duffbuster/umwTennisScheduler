@@ -1,0 +1,33 @@
+<!-- main.html -->
+<!-- homepage stuff, will eventually have the events calendar view -->
+<div class="container">
+    <div class="starter-template">
+        <h1>We're developing!</h1>
+        <p class="lead">This site courtesy of Colin Mackey, Evan Paige, and Scott Vaughn</p>
+        <p>Check us out on <a href="https://github.com/duffbuster/umwTennisScheduler">Github!</a></p>
+    </div>
+</div>
+
+<div class="container" ng-controller="databaseCtrl" style="margin-bottom: 20px;">
+    <button class="btn btn-default" ng-click="getEvents()">Get Events</button>
+    <pre ng-if="events" style="margin-top: 5px;">{{events}}</pre>
+</div>
+
+<div class="container" ng-controller="timeCtrl">
+    <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+    <pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
+    <div class="row">
+        <div class="col-xs-6">
+            Hours step is:
+            <select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>
+        </div>
+        <div class="col-xs-6">
+            Minutes step is:
+            <select class="form-control" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
+        </div>
+    </div>
+    <hr>
+    <button class="btn btn-info" ng-click="toggleMode()">12H / 24H</button>
+    <button class="btn btn-default" ng-click="update()">Set to 14:00</button>
+    <button class="btn btn-danger" ng-click="clear()">Clear</button>
+</div>

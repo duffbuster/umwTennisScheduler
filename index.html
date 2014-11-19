@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" class="ng-scope" ng-app="tennisCenterApp">
+<html lang="en" class="ng-scope" ng-app="tennisCenterApp" ng-controller="titleCtrl">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta author="Colin Mackey">
-    <title>UMW Tennis Center Scheduler</title>
+    <title>{{ Page.title() }} | UMW Tennis Center Scheduler</title>
 
     <!-- Icon -->
     <link rel="Shortcut Icon" href="http://www.umw.edu/wp-content/themes/umw/images/favicon.ico" type="image/x-icon" />
     
-    <script src="/app/js/required/angular/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-route.js"></script>
     <script src="/app/js/required/jquery/jquery.min.js"></script>
     <script src="/app/js/required/ui-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="/app/js/required/jquery-ui/ui/jquery-ui.js"></script>
@@ -27,6 +28,7 @@
 
 <!--    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>-->
     <script src="/app/app.js"></script>
+    <script src="/app/js/controllers/mainControllers.js"></script>
     <script src="/app/js/controllers/createEventControllers.js"></script>
     <script src="/app/js/controllers/createResControllers.js"></script>
     <script src="/app/js/controllers/createUserControllers.js"></script>
@@ -43,101 +45,20 @@
     <![endif]-->
 </head>
 
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Tennis Center Scheduler</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">     
-                <ul class="nav navbar-nav">
-                    <!-- ng-show="admin" -->
-                    <li><a href="/views/cevent.html">Create Event</a></li>
-                    <li><a href="#cres">Create Reservation</a></li>
-                    <!-- ng-show="admin" -->
-                    <li><a href="#revenue">Track Revenue</a></li>
-                    <!-- ng-show="admin" -->
-                    <li><a href="#usage">Track Usage</a></li>
-                    <li><a href="#vevents">View Events</a></li>
-                    <li><a href="#vres">View Reservations</a></li>
-<!--                    <li ng-show="loggedIn"><a href="#logout">Logout</a></li>-->
-                    <li><a href="#login">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Main body -->
-    <div class="container">
-        <div class="starter-template">
-            <h1>We're developing!</h1>
-            <p class="lead">This site courtesy of Colin Mackey, Evan Paige, and Scott Vaughn</p>
-            <p>Check us out on <a href="https://github.com/duffbuster/umwTennisScheduler">Github!</a></p>
-        </div>
-    </div>
+<body ng-controller="templateController">
     
-    <div class="container" ng-controller="databaseCtrl" style="margin-bottom: 20px;">
-        <button class="btn btn-default" ng-click="getEvents()">Get Events</button>
-        <pre ng-if="events" style="margin-top: 5px;">{{events}}</pre>
-    </div>
+    <!-- navbar -->
+    <div ng-include="templates[0].url"></div>
     
-    <div class="container" ng-controller="DatepickerCtrl">
-        <pre>Selected date is: <em>{{ dt | date:'fullDate' }}</em></pre>        
-        <h4>Event Date</h4>
-        <div class="row">
-            <div class="col-md-6">
-                <p class="input-group">
-                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="container" ng-controller="timeCtrl">
-        <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+    <!-- page header -->
+    <div class="page-header"><div class="container"><h1>{{ Page.title() }}</h1></div></div>
 
-        <pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
-
-        <div class="row"> 
-            <div class="col-xs-6">
-                Hours step is:
-                <select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>
-            </div>
-            <div class="col-xs-6">
-                Minutes step is:
-                <select class="form-control" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
-            </div>
-        </div>
-
-        <hr>
-
-        <button class="btn btn-info" ng-click="toggleMode()">12H / 24H</button>
-        <button class="btn btn-default" ng-click="update()">Set to 14:00</button>
-        <button class="btn btn-danger" ng-click="clear()">Clear</button>
-    </div>
-    <!--<div class="container" ng-controller="AlertCtrl">
-        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-        <button class="btn btn-default" ng-click="addAlert()">Add Alert</button>
-    </div>-->
-<!--    <div ui-calendar="uiConfig.calendar" ng-model="eventSources" ng-controller="CalendarCtrl" class="span8 calendar"></div>-->
+    <div ng-view></div>
     
-    <a href="https://github.com/duffbuster/umwTennisScheduler"><img style="position: absolute; top: 51px; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
-    
-    <footer class="footer">
-        <div class="container">
-            <p class="text-muted">Built with love by Colin Mackey, Evan Paige, and Scott Vaughn</p>
-        </div>
-    </footer>
+    <!-- footer -->
+    <div ng-include="templates[1].url"></div>
 
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
 </body>
 
 </html>

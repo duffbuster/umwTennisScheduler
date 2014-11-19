@@ -1,7 +1,8 @@
 var tennisApp = angular.module('tennisCenterApp', [
     /*'ui.calendar', */
-//    'ngRoute',
+    'ngRoute',
     'ui.bootstrap',
+    'mainControllers',
     'createEventControllers',
     'createResControllers',
     'trackRevenueControllers',
@@ -10,13 +11,70 @@ var tennisApp = angular.module('tennisCenterApp', [
     'viewResControllers',
     'loginControllers', // need another controller for logout?
     'createUserControllers'
-])/*.config(function(injectables) {
-    // providers and constants
-    // prevents accidental instantiation of services before they have been fully configured
-}).run(function(injectables) {
-    // instances and constants
-    // prevents further system configuration during run time
-})*/.controller('timeCtrl', function($scope, $log) {
+]);
+
+tennisApp.config(function($routeProvider) {
+
+    $routeProvider
+    .when('/', {
+        templateUrl: '/views/main.html'
+    })
+    .when('/cevent', {
+        templateUrl: '/views/createEvent.html',
+        controller: 'createEventCtrl'
+    })
+    .when('/cres', {
+        templateUrl: '/views/createRes.html',
+        controller: 'createResCtrl'
+    })
+    .when('/trev', {
+        templateUrl: '/views/trackRevenue.html',
+        controller: 'trackRevenueCtrl'
+    })
+    .when('/tuse', {
+        templateUrl: '/views/trackUsage.html',
+        controller: 'trackUsageCtrl'
+    })
+    .when('/vevents', {
+        templateUrl: '/views/viewEvents.html',
+        controller: 'viewEventsCtrl'
+    })
+    .when('/vres', {
+        templateUrl: '/views/viewRes.html',
+        controller: 'viewResCtrl'
+    })
+    .when('/login', {
+        templateUrl: '/login.html',
+        controller: 'loginCtrl'
+    })
+    .otherwise({
+        redirectTo: '/'
+    });
+
+}).factory('Page', function() {
+    var title = "Home";
+    return {
+        title: function() { return title; },
+        setTitle: function(newTitle) { title = newTitle; }
+    };
+}).controller('titleCtrl', function($scope, Page) {
+    $scope.Page = Page;
+}).controller('activeController', function($scope, $location) {
+    $scope.isActive = function(viewLocation) {
+        return viewLocation === $location.path();
+    };
+}).controller('templateController', function($scope) {
+    $scope.templates = [
+        { name: 'navbar',
+          url: '/views/partials/navbar.html'  
+        },
+        { name: 'footer',
+          url: '/views/partials/footer.html'
+        }
+    ];
+})
+// Put these in seperate files
+.controller('timeCtrl', function($scope, $log) {
     $scope.mytime = new Date();
 
     $scope.hstep = 1;
@@ -40,6 +98,7 @@ var tennisApp = angular.module('tennisCenterApp', [
     };
 
     $scope.changed = function () {
+    // gets here
         console.log('Time changed to: ' + $scope.mytime);
     };
 

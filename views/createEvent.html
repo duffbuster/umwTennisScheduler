@@ -1,0 +1,58 @@
+<!-- Create Event form partial -->
+<div class="container">
+    <pre>{{ info.startDate | date:'fullDate' }} / {{ info.endDate | date:'fullDate' }} | {{ info.startTime | date:'shortTime' }} / {{ info.endTime | date:'shortTime' }} {{info.name}}</pre>
+    <form name="form" class="validate-form" role="form">
+        <div ng-show="form.$invalid" class="alert alert-danger" role="alert">Please check that all fields are valid!</div>
+        <div class="form-group">
+            <label for="eventName">Event Name</label>
+            <input type="text" ng-model="info.name" ng-required=true class="form-control" id="eventName" placeholder="Enter Name" />
+        </div>
+        <div class="form-group" ng-controller="DatepickerCtrl">
+            <!-- Only sets the date in here -->
+            <pre>{{ info.startDate | date:'fullDate' }} / {{ info.endDate | date:'fullDate' }} | {{ info.startTime | date:'shortTime' }} / {{ info.endTime | date:'shortTime' }} {{info.name}}</pre>
+            <div class="row">
+                <div class="col-xs-6">
+                    <label for="eventStartDate">Start Date</label>
+                    <p class="input-group">
+                        <input type="text" ng-model="info.startDate" class="form-control" id="eventStartDate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="col-xs-6">
+                    <label for="eventEndDate">End Date</label>
+                    <p class="input-group">
+                        <input type="text" ng-model="info.endDate" class="form-control" id="eventEndDate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div> 
+        </div>
+        <div class="form-group">
+            <label for="isAllDay">All Day</label>
+            <input type="checkbox" ng-model="info.allDay" id="isAllDay"/>
+        </div>
+        <div class="form-group" ng-controller="timeCtrl">
+            <!-- Only sets the time in here -->
+            <pre>{{ info.startDate | date:'fullDate' }} / {{ info.endDate | date:'fullDate' }} | {{ info.startTime | date:'shortTime' }} / {{ info.endTime | date:'shortTime' }} {{info.name}}</pre>
+            <div class="row">
+                <div class="col-xs-6">
+                    <label>Start Time</label>
+                    <timepicker ng-model="info.startTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
+                </div>
+                <div ng-show="!info.allDay" class="col-xs-6">
+                    <label>End Time</label>
+                    <timepicker ng-model="info.endTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
+                </div>
+            </div>
+        </div>
+        <!-- TODO: Add recurring functionality -->
+        <button class="btn btn-default" ng-click="submit()" ng-disabled="form.$invalid">Submit</button>
+        <!-- working -->
+        <button class="btn btn-danger" ng-click="clear()">Clear</button>
+    </form>
+    <pre ng-if="eventInfo">{{eventInfo}}</pre>
+</div>

@@ -1,0 +1,29 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tennis Center Scheduler</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse" ng-controller="activeController">     
+            <ul class="nav navbar-nav">
+                <!-- ng-show="admin" -->
+                <li ng-class="{ active: isActive('/cevent') }"><a href="#/cevent">Create Event</a></li>
+                <li ng-class="{ active: isActive('/cres') }"><a href="#/cres">Create Reservation</a></li>
+                <!-- ng-show="admin" -->
+                <li ng-class="{ active: isActive('/trev') }"><a href="#/trev">Track Revenue</a></li>
+                <!-- ng-show="admin" -->
+                <li ng-class="{ active: isActive('/tuse') }"><a href="#/tuse">Track Usage</a></li>
+                <li ng-class="{ active: isActive('/vevents') }"><a href="#/vevents">View Events</a></li>
+                <li ng-class="{ active: isActive('/vres') }"><a href="#/vres">View Reservations</a></li>
+<!--                    <li ng-show="loggedIn"><a href="#logout">Logout</a></li>-->
+                <!-- broken for some reason -->
+                <li ng-class="{ active: isActive('/login') }"><a href="#/login">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
