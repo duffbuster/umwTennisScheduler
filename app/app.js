@@ -1,58 +1,22 @@
-var app = angular.module('tennisCenterApp', [/*'ui.calendar', */'ui.bootstrap']);
-
-app.controller('AlertCtrl', function($scope) {
-    // legacy
-    $scope.alerts = [
-        { type: 'danger', msg: 'Oh snap! Change a few things and try submitting again.' },
-        { type: 'success', msg: 'Well done! You have successfully read this important alert message.' }
-    ];
-
-    $scope.addAlert = function() {
-        $scope.alerts.push({msg: 'Alert!'});
-    };
-
-    $scope.closeAlert = function(index) {
-        $scope.alerts.splice(index, 1);
-    };
-}).controller('createEventCtrl', function($scope, $http) {
-    $scope.info = {
-        name: null,
-        startDate: new Date(),
-        endDate: new Date(),
-        startTime: new Date(),
-        endTime: new Date(),
-        allDay: null,
-        isRepeating: null
-    };
-    
-    $scope.clear = function() {
-        $scope.info.name = "";
-        $scope.info.startDate = new Date();
-        $scope.info.startTime = new Date();
-        $scope.info.endDate = new Date();
-        $scope.info.endtime = new Date();
-        $scope.info.allDay = false;
-        $scope.info.isRepeating = false;
-    };
-    
-    $scope.submit = function() {
-        $scope.eventInfo = {
-            event_sort_name: $scope.info.name.trim().toLowerCase().replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s/g, "_"),
-            event_name: $scope.info.name.trim(),
-            event_start_time: $scope.info.startTime.toLocaleTimeString,
-            event_end_time: $scope.info.endTime.toLocaleTimeString,
-            event_start_date: $scope.info.startDate.toString(),
-            event_end_date: $scope.info.endDate.toString(),
-            event_all_day: $scope.info.allDay ? 1 : 0,
-            event_recurring: $scope.info.isRepeating ? 1 : 0,
-            event_created: new Date().getTime().toJSON()
-            // TODO: capture user and push event_created_by
-        };
-        $http.post("/app/database/createEvent.php").success(function(data) {
-            $scope.result = data;
-        });
-    };
-}).controller('timeCtrl', function($scope, $log) {
+var tennisApp = angular.module('tennisCenterApp', [
+    /*'ui.calendar', */
+//    'ngRoute',
+    'ui.bootstrap',
+    'createEventControllers',
+    'createResControllers',
+    'trackRevenueControllers',
+    'trackUsageControllers',
+    'viewEventsControllers',
+    'viewResControllers',
+    'loginControllers', // need another controller for logout?
+    'createUserControllers'
+])/*.config(function(injectables) {
+    // providers and constants
+    // prevents accidental instantiation of services before they have been fully configured
+}).run(function(injectables) {
+    // instances and constants
+    // prevents further system configuration during run time
+})*/.controller('timeCtrl', function($scope, $log) {
     $scope.mytime = new Date();
 
     $scope.hstep = 1;
