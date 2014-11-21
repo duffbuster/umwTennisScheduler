@@ -12,17 +12,17 @@
         <div id="navbar" class="collapse navbar-collapse" ng-controller="activeController">     
             <ul class="nav navbar-nav">
                 <!-- ng-show="admin" -->
-                <li ng-class="{ active: isActive('/cevent') }"><a href="/cevent">Create Event</a></li>
-                <li ng-class="{ active: isActive('/cres') }"><a href="/cres">Create Reservation</a></li>
+                <li ng-class="{ active: isActive('/cevent') }"><a href="#/cevent">Create Event</a></li>
+                <li ng-class="{ active: isActive('/cres') }"><a href="#/cres">Create Reservation</a></li>
                 <!-- ng-show="admin" -->
-                <li ng-class="{ active: isActive('/trev') }"><a href="/trev">Track Revenue</a></li>
+                <li ng-class="{ active: isActive('/trev') }"><a href="#/trev">Track Revenue</a></li>
                 <!-- ng-show="admin" -->
-                <li ng-class="{ active: isActive('/tuse') }"><a href="/tuse">Track Usage</a></li>
-                <li ng-class="{ active: isActive('/vevents') }"><a href="/vevents">View Events</a></li>
-                <li ng-class="{ active: isActive('/vres') }"><a href="/vres">View Reservations</a></li>
+                <li ng-class="{ active: isActive('/tuse') }"><a href="#/tuse">Track Usage</a></li>
+                <li ng-class="{ active: isActive('/vevents') }"><a href="#/vevents">View Events</a></li>
+                <li ng-class="{ active: isActive('/vres') }"><a href="#/vres">View Reservations</a></li>
 <!--                    <li ng-show="loggedIn"><a href="#logout">Logout</a></li>-->
                 <!-- broken for some reason -->
-                <li ng-class="{ active: isActive('/login') }"><a href="/login">Login</a></li>
+                <li ng-class="{ active: isActive('/login') }"><a href="#/login">Login</a></li>
             </ul>
         </div>
     </div>
