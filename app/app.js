@@ -19,31 +19,31 @@ tennisApp.config(function($routeProvider) {
     .when('/', {
         templateUrl: '/views/main.html'
     })
-    .when('#/cevent', {
+    .when('/cevent', {
         templateUrl: '/views/createEvent.html',
         controller: 'createEventCtrl'
     })
-    .when('#/cres', {
+    .when('/cres', {
         templateUrl: '/views/createRes.html',
         controller: 'createResCtrl'
     })
-    .when('#/trev', {
+    .when('/trev', {
         templateUrl: '/views/trackRevenue.html',
         controller: 'trackRevenueCtrl'
     })
-    .when('#/tuse', {
+    .when('/tuse', {
         templateUrl: '/views/trackUsage.html',
         controller: 'trackUsageCtrl'
     })
-    .when('#/vevents', {
+    .when('/vevents', {
         templateUrl: '/views/viewEvents.html',
         controller: 'viewEventsCtrl'
     })
-    .when('#/vres', {
+    .when('/vres', {
         templateUrl: '/views/viewRes.html',
         controller: 'viewResCtrl'
     })
-    .when('#/login', {
+    .when('/login', {
         templateUrl: '/login.html',
         controller: 'loginCtrl'
     })
