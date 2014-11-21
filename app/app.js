@@ -16,7 +16,7 @@ var tennisApp = angular.module('tennisCenterApp', [
 tennisApp.config(function($routeProvider) {
 
     $routeProvider
-    .when('#/', {
+    .when('/', {
         templateUrl: '/views/main.html'
     })
     .when('#/cevent', {
@@ -48,7 +48,7 @@ tennisApp.config(function($routeProvider) {
         controller: 'loginCtrl'
     })
     .otherwise({
-        redirectTo: '#/'
+        redirectTo: '/'
     });
 
 }).factory('Page', function() {
