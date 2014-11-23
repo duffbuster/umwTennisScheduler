@@ -1,6 +1,6 @@
-var createEventControllers = angular.module('createEventControllers', []);
+var createEventModule = angular.module('createEventModule', []);
 
-createEventControllers.factory('event', function() {
+createEventModule.factory('event', function() {
     
 }).controller('createEventCtrl', function($scope, $http, Page) {
     // TODO: create factories/services for this module
