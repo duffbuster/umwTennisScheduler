@@ -1,1 +1,9 @@
-<h1>Login</h1>
+<div ng-controller="loginCtrl">
+    <form name="loginForm" class="validate-form" role="form" ng-submit="login(credentials)">
+        <label for="username">Username:</label>
+        <input type="text" id="username" ng-model="credentials.username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" ng-model="credentials.password">
+        <button class="btn btn-default" type="submit"></button>
+    </form>
+</div>
