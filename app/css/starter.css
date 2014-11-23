@@ -10,3 +10,18 @@ body {
     border-width: 1px;
     border-color: #d9534f;
 }
+* {
+    margin: 0;
+}
+#footer {
+    background-color: #F5F5F5;
+}
+#push, #footer {
+    height: 60px;
+}
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0px auto -60px
+}

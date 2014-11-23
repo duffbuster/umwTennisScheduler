@@ -1,42 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" class="ng-scope" ng-app="tennisCenterApp" ng-controller="titleCtrl">
+<html lang="en" class="ng-scope" ng-app="tennisCenterApp" ng-controller="applicationCtrl">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta author="Colin Mackey">
-    <title>{{ Page.title() }} | UMW Tennis Center Scheduler</title>
-<!-- push it -->
+    <title ng-controller="titleCtrl">{{ Page.title() }} | UMW Tennis Center Scheduler</title>
     <!-- Icon -->
     <link rel="Shortcut Icon" href="http://www.umw.edu/wp-content/themes/umw/images/favicon.ico" type="image/x-icon" />
-    
+
+    <!-- Scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-route.js"></script>
+    <script src="//code.angularjs.org/1.3.3/angular-route.js"></script>
     <script src="/app/js/required/jquery/jquery.min.js"></script>
     <script src="/app/js/required/ui-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="/app/js/required/jquery-ui/ui/jquery-ui.js"></script>
     <script src="/app/js/required/angular-ui-calendar/calendar.js"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/app/js/required/moment/moment.js"></script>
     <script src="/app/js/required/fullcalendar/fullcalendar.min.js"></script>
     <script src="/app/js/required/bootstrap.min.js"></script>
+    <script src="/app/app.js"></script>
+    <script src="/app/js/Modules/createEventModule.js"></script>
+    <script src="/app/js/Modules/createResModule.js"></script>
+    <script src="/app/js/Modules/createUserModule.js"></script>
+    <script src="/app/js/Modules/loginModule.js"></script>
+    <script src="/app/js/Modules/trackRevenueModule.js"></script>
+    <script src="/app/js/Modules/trackUsageModule.js"></script>
+    <script src="/app/js/Modules/viewEventsModule.js"></script>
+    <script src="/app/js/Modules/viewResModule.js"></script>
+    
     <!-- CSS -->
     <link href="/app/css/bootstrap.css" rel="stylesheet">
     <link href="/app/css/starter.css" rel="stylesheet">
     <link href="/app/js/fullcalendar/fullcalendar.css">
 
-<!--    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>-->
-    <script src="/app/app.js"></script>
-    <script src="/app/js/controllers/mainControllers.js"></script>
-    <script src="/app/js/controllers/createEventControllers.js"></script>
-    <script src="/app/js/controllers/createResControllers.js"></script>
-    <script src="/app/js/controllers/createUserControllers.js"></script>
-    <script src="/app/js/controllers/loginControllers.js"></script>
-    <script src="/app/js/controllers/trackRevenueControllers.js"></script>
-    <script src="/app/js/controllers/trackUsageControllers.js"></script>
-    <script src="/app/js/controllers/viewEventsControllers.js"></script>
-    <script src="/app/js/controllers/viewResControllers.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -45,18 +43,19 @@
     <![endif]-->
 </head>
 
-<body ng-controller="templateController">
+<body>
     
     <!-- navbar -->
-    <div ng-include="templates[0].url"></div>
-    
+    <div ng-include="'/views/partials/navbar.html'"></div>
+    <div ng-if="currentUser">Welcome, {{ currentUser.name }}</div>
+    <div ng-if="isAuthorized(userRoles.admin">You're an Admin.</div>
     <!-- page header -->
-    <div class="page-header"><div class="container"><h1>{{ Page.title() }}</h1></div></div>
+    <div class="page-header"><div class="container"><h1 ng-controller="titleCtrl">{{ Page.title() }}</h1></div></div>
 
     <div ng-view></div>
     
     <!-- footer -->
-    <div ng-include="templates[1].url"></div>
+    <div ng-include="'/views/partials/footer.html'"></div>
 
 
 </body>

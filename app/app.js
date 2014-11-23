@@ -1,19 +1,20 @@
 var tennisApp = angular.module('tennisCenterApp', [
     /*'ui.calendar', */
+    'loginModule',
     'ngRoute',
     'ui.bootstrap',
-    'mainControllers',
-    'createEventControllers',
-    'createResControllers',
-    'trackRevenueControllers',
-    'trackUsageControllers',
-    'viewEventsControllers',
-    'viewResControllers',
-    'loginControllers', // need another controller for logout?
-    'createUserControllers'
+    'createEventModule',
+    'createResModule',
+    'trackRevenueModule',
+    'trackUsageModule',
+    'viewEventsModule',
+    'viewResModule',
+    'createUserModule'
 ]);
 
-tennisApp.config(function($routeProvider) {
+tennisApp
+// Configures the routes
+.config(function($routeProvider, USER_ROLES) {
 
     $routeProvider
     .when('/', {
@@ -21,57 +22,160 @@ tennisApp.config(function($routeProvider) {
     })
     .when('/cevent', {
         templateUrl: '/views/createEvent.html',
-        controller: 'createEventCtrl'
+        controller: 'createEventCtrl',
+        data: {
+            //authorizedRoles: [USER_ROLES.admin]
+        }
     })
     .when('/cres', {
         templateUrl: '/views/createRes.html',
-        controller: 'createResCtrl'
+        controller: 'createResCtrl',
+        data: {
+            //authorizedRoles: [USER_ROLES.admin, USER_ROLES.intern]
+        }
     })
     .when('/trev', {
         templateUrl: '/views/trackRevenue.html',
-        controller: 'trackRevenueCtrl'
+        controller: 'trackRevenueCtrl',
+        data: {
+            //authorizedRoles: [USER_ROLES.admin]
+        }
     })
     .when('/tuse', {
         templateUrl: '/views/trackUsage.html',
-        controller: 'trackUsageCtrl'
+        controller: 'trackUsageCtrl',
+        data: {
+            //authorizedRoles: [USER_ROLES.admin]
+        }
     })
     .when('/vevents', {
         templateUrl: '/views/viewEvents.html',
-        controller: 'viewEventsCtrl'
+        controller: 'viewEventsCtrl',
+        data: {
+            //authorizedRoles: [USER_ROLES.admin, USER_ROLES.intern]
+        }
     })
     .when('/vres', {
         templateUrl: '/views/viewRes.html',
-        controller: 'viewResCtrl'
+        controller: 'viewResCtrl',
+        data: {
+            //authorizedRoles: [USER_ROLES.admin, USER_ROLES.intern]
+        }
     })
     .when('/login', {
-        templateUrl: '/login.html',
+        templateUrl: '/views/login.html',
         controller: 'loginCtrl'
     })
     .otherwise({
         redirectTo: '/'
     });
 
-}).factory('Page', function() {
+})
+// Creates a new page name object
+.factory('Page', function() {
     var title = "Home";
     return {
         title: function() { return title; },
         setTitle: function(newTitle) { title = newTitle; }
     };
-}).controller('titleCtrl', function($scope, Page) {
+})
+// Controls the title bar of the page
+.controller('titleCtrl', function($scope, Page) {
     $scope.Page = Page;
-}).controller('activeController', function($scope, $location) {
+})
+// Controls the active element on the navbar
+.controller('activeController', function($scope, $location) {
     $scope.isActive = function(viewLocation) {
         return viewLocation === $location.path();
     };
-}).controller('templateController', function($scope) {
-    $scope.templates = [
-        { name: 'navbar',
-          url: '/views/partials/navbar.html'  
-        },
-        { name: 'footer',
-          url: '/views/partials/footer.html'
+})
+// Application controller
+.controller('applicationCtrl', function($scope, USER_ROLES, AuthService) {
+    $scope.currentUser = null;
+    $scope.userRoles = USER_ROLES;
+    $scope.isAuthorized = AuthService.isAuthorized;
+    $scope.isLoginPage = false;
+ 
+    $scope.setCurrentUser = function (user) {
+        $scope.currentUser = user;
+    };
+})
+// does some fancy http stuff
+.config(function ($httpProvider) {
+    $httpProvider.interceptors.push([
+        '$injector',
+        function ($injector) {
+          return $injector.get('AuthInterceptor');
         }
-    ];
+    ]);
+})
+
+.factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
+    return {
+        responseError: function (response) { 
+            $rootScope.$broadcast({
+                401: AUTH_EVENTS.notAuthenticated,
+                403: AUTH_EVENTS.notAuthorized,
+                419: AUTH_EVENTS.sessionTimeout,
+                440: AUTH_EVENTS.sessionTimeout
+            }[response.status], response);
+            return $q.reject(response);
+        }
+  };
+})
+// Runs user authentication
+/*.run(function($rootScope, AUTH_EVENTS, AuthService) {
+    $rootScope.$on('$routeChangeStart', function (event, next) {
+    var authorizedRoles = next.data.authorizedRoles;
+    if (!AuthService.isAuthorized(authorizedRoles)) { 
+        event.preventDefault();
+        if (AuthService.isAuthenticated()) {
+            // user is not allowed
+            $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+        } else {
+            // user is not logged in
+         $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+        }
+    }
+  });
+})*/
+// redirects to the login form
+.directive('loginDialog', function(AUTH_EVENTS) {
+    return {
+        restrict: 'A',
+        // might not work with my partial structure
+        template: '<div ng-if="visible" ng-include="\'login-form.html\'">',
+        link: function (scope) {
+              var showDialog = function () {
+                    scope.visible = true;
+              };
+
+              scope.visible = false;
+              scope.$on(AUTH_EVENTS.notAuthenticated, showDialog);
+              scope.$on(AUTH_EVENTS.sessionTimeout, showDialog);
+        }
+    };
+})
+
+.directive('formAutofillFix', function ($timeout) {
+    return function (scope, element, attrs) {
+    element.prop('method', 'post');
+    if (attrs.ngSubmit) {
+      $timeout(function () {
+        element
+          .unbind('submit')
+          .bind('submit', function (event) {
+            event.preventDefault();
+            element
+              .find('input, textarea, select')
+              .trigger('input')
+              .trigger('change')
+              .trigger('keydown');
+            scope.$apply(attrs.ngSubmit);
+          });
+      });
+    }
+  };
 })
 // Put these in seperate files
 .controller('timeCtrl', function($scope, $log) {
