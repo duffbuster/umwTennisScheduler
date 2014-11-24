@@ -123,28 +123,28 @@ tennisApp
         }
   };
 })
-// Runs user authentication
+// Runs user authentication Comment out until I can actually log in
 /*.run(function($rootScope, AUTH_EVENTS, AuthService) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
-    var authorizedRoles = next.data.authorizedRoles;
-    if (!AuthService.isAuthorized(authorizedRoles)) { 
-        event.preventDefault();
-        if (AuthService.isAuthenticated()) {
-            // user is not allowed
-            $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
-        } else {
-            // user is not logged in
-         $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+        var authorizedRoles = next.data.authorizedRoles;
+        if (!AuthService.isAuthorized(authorizedRoles)) { 
+            event.preventDefault();
+            if (AuthService.isAuthenticated()) {
+                // user is not allowed
+                $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+            } else {
+                // user is not logged in
+                $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+            }
         }
-    }
-  });
+    });
 })*/
 // redirects to the login form
 .directive('loginDialog', function(AUTH_EVENTS) {
     return {
         restrict: 'A',
         // might not work with my partial structure
-        template: '<div ng-if="visible" ng-include="\'login-form.html\'">',
+        template: '<div ng-if="visible" ng-include="\'login.html\'">',
         link: function (scope) {
               var showDialog = function () {
                     scope.visible = true;
@@ -157,7 +157,7 @@ tennisApp
     };
 })
 
-.directive('formAutofillFix', function ($timeout) {
+/*.directive('formAutofillFix', function ($timeout) {
     return function (scope, element, attrs) {
     element.prop('method', 'post');
     if (attrs.ngSubmit) {
@@ -176,7 +176,7 @@ tennisApp
       });
     }
   };
-})
+})*/
 // Put these in seperate files
 .controller('timeCtrl', function($scope, $log) {
     $scope.mytime = new Date();

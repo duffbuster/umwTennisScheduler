@@ -22,10 +22,10 @@ loginModule
     
     authService.login = function (credentials) {
         return $http
-          .post('/login', credentials)
-          .then(function (res) {
-            Session.create(res.data.id, res.data.user.id,
-                           res.data.user.role);
+          .post("/app/database/login.php", credentials)
+          .then(function (res) { // should it be just res.id? need to restructure data
+            //Session.create(res.data.id, res.data.user.id,
+            //               res.data.user.role);
             return res.data.user;
           });
     };
