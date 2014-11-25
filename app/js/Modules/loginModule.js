@@ -1,7 +1,7 @@
 var loginModule = angular.module('loginModule', []);
 
 loginModule
-.controller('loginCtrl', function($scope, $rootScope, AUTH_EVENTS, AuthService, Page) {
+.controller('loginCtrl', function($scope, $rootScope, AUTH_EVENTS, AuthService, Page, Session) {
     Page.setTitle('Login');
     $scope.credentials = {
         username: '',
@@ -11,6 +11,8 @@ loginModule
     $scope.login = function(credentials) {
         AuthService.login(credentials).then(function(user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+            // should be user in params
+            console.log(user);
             $scope.setCurrentUser(user);
         }, function() {
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
@@ -27,7 +29,6 @@ loginModule
         return $http
           .post("/app/database/login.php", credentials)
           .then(function (res) { // should it be just res.id? need to restructure data
-            console.log(res);
             Session.create(res.data.user_id,
                            res.data.user_role);
             return res.data;

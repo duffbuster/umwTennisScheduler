@@ -133,7 +133,7 @@ tennisApp
 .run(function($rootScope, AUTH_EVENTS, AuthService) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
         var authorizedRoles = next.$$route.data.authorizedRoles;
-        console.log(authorizedRoles);
+        //console.log(authorizedRoles);
         /*if (!AuthService.isAuthorized(authorizedRoles)) { 
             event.preventDefault();
             if (AuthService.isAuthenticated()) {
