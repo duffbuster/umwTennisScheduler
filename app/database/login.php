@@ -9,8 +9,10 @@
     // Protect from SQL injection
     $username = stripslashes($username);
     $password = stripslashes($password);
-    $username = mysql_real_escape_string($username);
-    $password = mysql_real_escape_string($password);
+    /*$username = mysql_real_escape_string($username);
+    $password = mysql_real_escape_string($password);*/
+    $username = quote($username);
+    $password = quote($password);
 
     $database->query("SELECT * FROM users WHERE username='" + $username + "' AND password=password('" + $password + "')");
     $row = $database->single();
