@@ -24,6 +24,7 @@ loginModule
         return $http
           .post("/app/database/login.php", credentials)
           .then(function (res) { // should it be just res.id? need to restructure data
+            console.log(res);
             //Session.create(res.data.id, res.data.user.id,
             //               res.data.user.role);
             return res.data.user;
