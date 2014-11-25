@@ -130,7 +130,7 @@ tennisApp
 .run(function($rootScope, AUTH_EVENTS, AuthService) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
         console.log(next);
-        /*var authorizedRoles = next.$$route.data.authorizedRoles;
+        var authorizedRoles = next.$$route.data.authorizedRoles;
         if (!AuthService.isAuthorized(authorizedRoles)) { 
             event.preventDefault();
             if (AuthService.isAuthenticated()) {
@@ -140,7 +140,7 @@ tennisApp
                 // user is not logged in
                 $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
             }
-        }*/
+        }
     });
 })
 // redirects to the login form
