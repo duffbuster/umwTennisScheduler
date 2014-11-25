@@ -13,6 +13,6 @@
         
         $database->query("SELECT * FROM users WHERE username='" + $username + "' AND password=password('" + $password + "')");
         $row = $database->single();
-        echo json_encode($row);
+        echo json_encode("testing, testing 123");
     }
 ?>
