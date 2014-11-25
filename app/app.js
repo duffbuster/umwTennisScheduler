@@ -124,7 +124,7 @@ tennisApp
   };
 })
 // Runs user authentication Comment out until I can actually log in
-/*.run(function($rootScope, AUTH_EVENTS, AuthService) {
+.run(function($rootScope, AUTH_EVENTS, AuthService) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
         var authorizedRoles = next.data.authorizedRoles;
         if (!AuthService.isAuthorized(authorizedRoles)) { 
@@ -138,7 +138,7 @@ tennisApp
             }
         }
     });
-})*/
+})
 // redirects to the login form
 .directive('loginDialog', function(AUTH_EVENTS) {
     return {
@@ -157,7 +157,7 @@ tennisApp
     };
 })
 
-/*.directive('formAutofillFix', function ($timeout) {
+.directive('formAutofillFix', function ($timeout) {
     return function (scope, element, attrs) {
     element.prop('method', 'post');
     if (attrs.ngSubmit) {
@@ -176,7 +176,7 @@ tennisApp
       });
     }
   };
-})*/
+})
 // Put these in seperate files
 .controller('timeCtrl', function($scope, $log) {
     $scope.mytime = new Date();
