@@ -126,7 +126,8 @@ tennisApp
 // Runs user authentication Comment out until I can actually log in
 .run(function($rootScope, AUTH_EVENTS, AuthService) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
-        var authorizedRoles = next.data.authorizedRoles;
+        console.log(next);
+        /*var authorizedRoles = next.data.authorizedRoles;
         if (!AuthService.isAuthorized(authorizedRoles)) { 
             event.preventDefault();
             if (AuthService.isAuthenticated()) {
@@ -136,7 +137,7 @@ tennisApp
                 // user is not logged in
                 $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
             }
-        }
+        }*/
     });
 })
 // redirects to the login form
