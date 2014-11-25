@@ -24,42 +24,42 @@ tennisApp
         templateUrl: '/views/createEvent.html',
         controller: 'createEventCtrl',
         data: {
-            //authorizedRoles: [USER_ROLES.admin]
+            authorizedRoles: [USER_ROLES.admin]
         }
     })
     .when('/cres', {
         templateUrl: '/views/createRes.html',
         controller: 'createResCtrl',
         data: {
-            //authorizedRoles: [USER_ROLES.admin, USER_ROLES.intern]
+            authorizedRoles: [USER_ROLES.admin, USER_ROLES.intern]
         }
     })
     .when('/trev', {
         templateUrl: '/views/trackRevenue.html',
         controller: 'trackRevenueCtrl',
         data: {
-            //authorizedRoles: [USER_ROLES.admin]
+            authorizedRoles: [USER_ROLES.admin]
         }
     })
     .when('/tuse', {
         templateUrl: '/views/trackUsage.html',
         controller: 'trackUsageCtrl',
         data: {
-            //authorizedRoles: [USER_ROLES.admin]
+            authorizedRoles: [USER_ROLES.admin]
         }
     })
     .when('/vevents', {
         templateUrl: '/views/viewEvents.html',
         controller: 'viewEventsCtrl',
         data: {
-            //authorizedRoles: [USER_ROLES.admin, USER_ROLES.intern]
+            authorizedRoles: [USER_ROLES.admin, USER_ROLES.intern]
         }
     })
     .when('/vres', {
         templateUrl: '/views/viewRes.html',
         controller: 'viewResCtrl',
         data: {
-            //authorizedRoles: [USER_ROLES.admin, USER_ROLES.intern]
+            authorizedRoles: [USER_ROLES.admin, USER_ROLES.intern]
         }
     })
     .when('/login', {
