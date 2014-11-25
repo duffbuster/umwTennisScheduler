@@ -22,6 +22,7 @@ loginModule
     var authService = {};
     
     authService.login = function (credentials) {
+        console.log(credentials);
         return $http
           .post("/app/database/login.php", credentials)
           .then(function (res) { // should it be just res.id? need to restructure data
