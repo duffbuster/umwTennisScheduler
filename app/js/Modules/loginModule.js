@@ -13,7 +13,7 @@ loginModule
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
             // should be user in params
             console.log(user);
-            $scope.setCurrentUser(user);
+            $scope.setCurrentUser(user.user_username);
         }, function() {
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
         });
