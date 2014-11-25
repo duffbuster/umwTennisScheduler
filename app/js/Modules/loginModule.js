@@ -25,9 +25,9 @@ loginModule
           .post("/app/database/login.php", credentials)
           .then(function (res) { // should it be just res.id? need to restructure data
             console.log(res);
-            Session.create(res.data.id, res.data.user.id,
-                           res.data.user.role);
-            return res.data.user;
+            Session.create(res.data.user_id,
+                           res.data.user_role);
+            return res.data;
           });
     };
     
@@ -47,14 +47,14 @@ loginModule
 
 })
 .service('Session', function() {
-    this.create = function(sessionId, userId, userRole) {
-        this.id = sessionId;
+    this.create = function(/*sessionId, */userId, userRole) {
+//        this.id = sessionId;
         this.userId = userId;
         this.userRole = userRole;
     };
     
     this.destroy = function () {
-        this.id = null;
+//        this.id = null;
         this.userId = null;
         this.userRole = null;
     };
