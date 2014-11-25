@@ -9,6 +9,7 @@ loginModule
     };
     
     $scope.login = function(credentials) {
+        console.log(credentials);
         AuthService.login(credentials).then(function(user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
             $scope.setCurrentUser(user);
