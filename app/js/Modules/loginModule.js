@@ -16,6 +16,9 @@ loginModule
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
         });
     };
+    $scope.logout = function() {
+        Session.destroy();
+    }
 })
 .factory('AuthService', function($http, Session) {
     var authService = {};
