@@ -12,7 +12,9 @@
     /*$username = mysql_real_escape_string($username);
     $password = mysql_real_escape_string($password);*/
 
-    $database->query("SELECT * FROM users WHERE username='" + $username + "' AND password=password('" + $password + "')");
+    $database->query("SELECT * FROM users WHERE username=:username AND password=password(:password)");
+    $database->bind(':username', $username);
+    $database->bind(':password', $password);
     $row = $database->single();
     echo json_encode($row);
 ?>
