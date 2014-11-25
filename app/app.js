@@ -18,7 +18,10 @@ tennisApp
 
     $routeProvider
     .when('/', {
-        templateUrl: '/views/main.html'
+        templateUrl: '/views/main.html',
+        data: {
+            authorizedRoles: [USER_ROLES.admin, USER_ROLES.all, USER_ROLES.guest, USER_ROLES.intern]
+        }
     })
     .when('/cevent', {
         templateUrl: '/views/createEvent.html',
