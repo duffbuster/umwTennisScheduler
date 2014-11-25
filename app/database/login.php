@@ -13,6 +13,6 @@
         
         $database->query("SELECT * FROM users WHERE username='" + $username + "' AND password=password('" + $password + "')");
         $row = $database->single();
-        echo ("testing, testing 123");
+//        echo ("testing, testing 123");
     }
 ?>
