@@ -64,7 +64,10 @@ tennisApp
     })
     .when('/login', {
         templateUrl: '/views/login.html',
-        controller: 'loginCtrl'
+        controller: 'loginCtrl',
+        data: {
+            authorizedRoles: [USER_ROLES.admin, USER_ROLES.all, USER_ROLES.guest, USER_ROLES.intern]
+        }
     })
     .otherwise({
         redirectTo: '/'
@@ -127,7 +130,7 @@ tennisApp
 .run(function($rootScope, AUTH_EVENTS, AuthService) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
         console.log(next);
-        /*var authorizedRoles = next.data.authorizedRoles;
+        /*var authorizedRoles = next.$$route.data.authorizedRoles;
         if (!AuthService.isAuthorized(authorizedRoles)) { 
             event.preventDefault();
             if (AuthService.isAuthenticated()) {
