@@ -1,6 +1,5 @@
 <?php
     require 'config.php'; // database connection script
-    echo ("outside if");
     echo (credentials);
     if (isset($_POST['credentials'])) {
         $username = $_POST['username'];
