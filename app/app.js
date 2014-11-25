@@ -130,10 +130,21 @@ tennisApp
   };
 })
 // Runs user authentication Comment out until I can actually log in
-.run(function($rootScope, AUTH_EVENTS, AuthService) {
+.run(function($route, $rootScope, $location, AUTH_EVENTS, AuthService) {
+    var original = $location.path;
+    $location.path = function(path, reload) {
+        if (reload === false) {
+            var lastroute = $route.current;
+            var un = $rootScope.$on('$locationChangeSuccess' ,function() {
+                $route.current = lastRoute;
+                un();
+            })
+        }
+        return original.apply($location, [path]);
+    };
     $rootScope.$on('$routeChangeStart', function (event, next) {
         var authorizedRoles = next.$$route.data.authorizedRoles;
-        //console.log(authorizedRoles);
+        console.log(authorizedRoles);
         /*if (!AuthService.isAuthorized(authorizedRoles)) { 
             event.preventDefault();
             if (AuthService.isAuthenticated()) {
