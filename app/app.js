@@ -133,7 +133,7 @@ tennisApp
 .run(function($rootScope, AUTH_EVENTS, AuthService) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
         var authorizedRoles = next.data.authorizedRoles;
-        console.log(authorizedRoles);
+//        console.log(authorizedRoles);
         /*if (!AuthService.isAuthorized(authorizedRoles)) { 
             event.preventDefault();
             if (AuthService.isAuthenticated()) {
@@ -210,7 +210,7 @@ tennisApp
 
     $scope.changed = function () {
     // gets here
-        console.log('Time changed to: ' + $scope.mytime);
+//        console.log('Time changed to: ' + $scope.mytime);
     };
 
     $scope.clear = function() {

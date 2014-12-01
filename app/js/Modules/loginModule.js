@@ -1,7 +1,8 @@
 var loginModule = angular.module('loginModule', []);
 
 loginModule
-.controller('loginCtrl', function($scope, $rootScope, AUTH_EVENTS, AuthService, Page, Session) {
+.controller('loginCtrl', function($scope, $rootScope, $location, AUTH_EVENTS, AuthService, Page, Session) {
+    $scope.isLoginPage = true;
     Page.setTitle('Login');
     $scope.credentials = {
         username: '',
@@ -11,11 +12,13 @@ loginModule
     $scope.login = function(credentials) {
         AuthService.login(credentials).then(function(user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-            // should be user in params
             console.log(user);
             $scope.setCurrentUser(user);
+            $location.path('/vevents');
         }, function() {
+            alert("Login Failed");
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+            // look for loginFailed broadcast to the pages through $rootScope
         });
     };
     $scope.logout = function() {
