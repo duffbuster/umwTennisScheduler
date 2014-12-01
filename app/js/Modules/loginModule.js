@@ -17,6 +17,7 @@ loginModule
             // it's going in here when the login fails
             // which isn't good
             $scope.setCurrentUser(user);
+            // this works
             $location.path('/vevents');
         }, function() {
             alert("Login Failed");

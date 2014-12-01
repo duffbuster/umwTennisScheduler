@@ -54,10 +54,11 @@
 
     <div ng-view></div>
     
+    <div login-dialog ng-if="!isLoginPage"></div>
+    
     <!-- footer -->
     <div ng-include="'/views/partials/footer.html'"></div>
 
-    <div login-dialog ng-if="!isLoginPage"></div>
 </body>
 
 </html>

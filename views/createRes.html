@@ -1,1 +1,77 @@
-<h1>Create Reservation</h1>
+<!-- Create Reservation form -->
+<div class="container">
+    <form name="cresForm" class="validate-form" role="form">
+        <div ng-show="form.$invalid" class="alert alert-danger" role="alert">Please check that all fields are valid!</div>
+
+        <div class="form-group">
+            <label for="resName">Name</label>
+            <input type="text" ng-model="resInfo.name" ng-required="true" class="form-control" id="resName" placeholder="Enter Name" />
+        </div>
+        
+        <div class="form-group" ng-controller="DatepickerCtrl">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label for="resDate">Reservation Date</label>
+                    <p class="input-group">
+                        <input class="form-control" type="text" ng-model="resInfo.date" class="form-control" id="resDate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div> 
+        </div>
+        
+        <div class="form-group" ng-controller="timeCtrl">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label>Start Time</label>
+                    <timepicker ng-model="resInfo.startTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
+                </div>
+                <div class="col-xs-6">
+                    <label>End Time</label>
+                    <timepicker ng-model="resInfo.endTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group"> <!-- phone -->
+            <label for="resPhone">Phone</label>
+            <input type="text" ng-model="resInfo.phone" ng-required="true" class="form-control" id="resPhone" placeholder="Enter Phone" ng-pattern="/^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/" />
+        </div>
+        
+        <div class="form-group"> <!-- email -->
+            <label for="resEmail">Email</label>
+            <input title="email" ng-model="resInfo.email" ng-required="false" class="form-control" id="resEmail" placeholder="Enter Email" />
+        </div>
+        
+        <div class="form-group"> <!-- number of people playing -->
+            <label for="resNumPlayers">Number of Players</label>
+            <input type="number" ng-required="true" ng-model="resInfo.numPlayers" class="form-control" id="resNumPlayers" />
+        </div>
+        
+        <div class="form-group"> <!-- court -->
+            <label for="resCourt">Court</label>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="resCourt" data-toggle="dropdown" aria-expanded="true">
+                    Court
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" ng-model="resInfo.court">
+                    <li ng-repeat="court in courts">
+                        <a href>{{court}}</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+        
+        <div class="form-group"> <!-- player type -->
+        
+        </div>
+        
+        <button class="btn btn-default" ng-click="submit()" ng-disabled="form.$invalid">Submit</button>
+        <button class="btn btn-danger" ng-click="clear()">Clear</button>
+        
+    </form>
+</div>
