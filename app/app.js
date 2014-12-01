@@ -132,8 +132,10 @@ tennisApp
 // Runs user authentication Comment out until I can actually log in
 .run(function($rootScope, AUTH_EVENTS, AuthService) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
+        // cannot read property 'authorizedRoles' of undefined
+        console.log(next);
         var authorizedRoles = next.data.authorizedRoles;
-//        console.log(authorizedRoles);
+        console.log(authorizedRoles);
         if (!AuthService.isAuthorized(authorizedRoles)) { 
             event.preventDefault();
             if (AuthService.isAuthenticated()) {
