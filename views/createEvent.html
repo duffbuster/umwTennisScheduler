@@ -1,5 +1,5 @@
 <!-- Create Event form partial -->
-<div login-dialog ng-if="!isLoginPage" class="container">
+<div class="container">
     <pre>{{ info.startDate | date:'fullDate' }} / {{ info.endDate | date:'fullDate' }} | {{ info.startTime | date:'shortTime' }} / {{ info.endTime | date:'shortTime' }} {{info.name}}</pre>
     <form name="form" class="validate-form" role="form">
         <div ng-show="form.$invalid" class="alert alert-danger" role="alert">Please check that all fields are valid!</div>

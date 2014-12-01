@@ -153,7 +153,7 @@ tennisApp
     return {
         restrict: 'A',
         // might not work with my partial structure
-        template: '<div ng-if="visible" ng-include="\'login.html\'">',
+        template: '<div ng-if="visible" ng-include="\'/views/login.html\'">',
         link: function (scope) {
               var showDialog = function () {
                     scope.visible = true;
