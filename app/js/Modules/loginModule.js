@@ -13,6 +13,7 @@ loginModule
         AuthService.login(credentials).then(function(user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
             console.log(user);
+            console.log("hi");
             $scope.setCurrentUser(user);
             $location.path('/vevents');
         }, function() {
