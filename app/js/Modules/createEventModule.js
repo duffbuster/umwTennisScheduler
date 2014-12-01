@@ -5,6 +5,7 @@ createEventModule.factory('event', function() {
 }).controller('createEventCtrl', function($scope, $http, Page) {
     // TODO: create factories/services for this module
     Page.setTitle('Create Event');
+    $scope.isLoginPage = false;
     
     $scope.info = {
         name: null,

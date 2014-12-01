@@ -4,6 +4,7 @@ loginModule
 .controller('loginCtrl', function($scope, $rootScope, $location, AUTH_EVENTS, AuthService, Page, Session) {
     $scope.isLoginPage = true;
     Page.setTitle('Login');
+    
     $scope.credentials = {
         username: '',
         password: ''
@@ -13,7 +14,8 @@ loginModule
         AuthService.login(credentials).then(function(user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
             console.log(user);
-            console.log("hi");
+            // it's going in here when the login fails
+            // which isn't good
             $scope.setCurrentUser(user);
             $location.path('/vevents');
         }, function() {
@@ -55,6 +57,7 @@ loginModule
 
 })
 .service('Session', function() {
+    // can change this to meet my needs
     this.create = function(/*sessionId, */userId, userRole) {
 //        this.id = sessionId;
         this.userId = userId;
