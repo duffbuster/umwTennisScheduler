@@ -27,7 +27,7 @@ loginModule
     };
     $scope.logout = function() {
         Session.destroy();
-    }
+    };
 })
 .factory('AuthService', function($http, Session) {
     var authService = {};
