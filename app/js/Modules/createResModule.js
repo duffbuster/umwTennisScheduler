@@ -2,7 +2,7 @@ var createResModule = angular.module('createResModule', []);
 
 var PHONE_REGEXP = /^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/;;
 
-createResModule.controller('createResCtrl', function($scope, Page, info) {
+createResModule.controller('createResCtrl', function($scope, Page) {
     Page.setTitle('Create Reservation');
     $scope.isLoginPage = false;
     $scope.courts = [
@@ -25,8 +25,4 @@ createResModule.controller('createResCtrl', function($scope, Page, info) {
         'Outdoor 11',
         'Outdoor 12'
     ];
-})
-
-.factory('info', function() {
-    
 });
