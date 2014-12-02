@@ -13,7 +13,6 @@ loginModule
     $scope.login = function(credentials) {
         AuthService.login(credentials).then(function(user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-            console.log(user);
             // it's going in here when the login fails
             // which isn't good
             $scope.setCurrentUser(user);

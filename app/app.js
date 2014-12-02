@@ -150,15 +150,14 @@ tennisApp
 .directive('loginDialog', function(AUTH_EVENTS) {
     return {
         restrict: 'A',
-        // might not work with my partial structure
         template: '<div ng-if="visible" ng-include="\'/views/login.html\'">',
         link: function (scope) {
               var showDialog = function () {
-                    console.log('setting visible');
                     scope.visible = true;
               };
 
               scope.visible = false;
+            console.log(scope.visible);
               scope.$on(AUTH_EVENTS.notAuthenticated, showDialog);
               scope.$on(AUTH_EVENTS.sessionTimeout, showDialog);
         }
