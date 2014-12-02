@@ -133,10 +133,8 @@ tennisApp
 .run(function($rootScope, AUTH_EVENTS, AuthService) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
         // cannot read property 'authorizedRoles' of undefined
-        /*console.log(next);
         var authorizedRoles = next.data.authorizedRoles;
-        console.log(authorizedRoles);*/
-       /* if (!AuthService.isAuthorized(authorizedRoles)) { 
+        if (!AuthService.isAuthorized(authorizedRoles)) { 
             event.preventDefault();
             if (AuthService.isAuthenticated()) {
                 // user is not allowed
@@ -145,7 +143,7 @@ tennisApp
                 // user is not logged in
                 $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
             }
-        }*/
+        }
     });
 })
 // redirects to the login form
@@ -156,6 +154,7 @@ tennisApp
         template: '<div ng-if="visible" ng-include="\'/views/login.html\'">',
         link: function (scope) {
               var showDialog = function () {
+                    console.log('setting visible');
                     scope.visible = true;
               };
 
