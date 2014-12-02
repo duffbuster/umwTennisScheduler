@@ -49,25 +49,19 @@
             <label for="resNumPlayers">Number of Players</label>
             <input type="number" ng-required="true" ng-model="resInfo.numPlayers" class="form-control" id="resNumPlayers" />
         </div>
-        
-        <div class="form-group"> <!-- court -->
-            <label for="resCourt">Court</label>
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="resCourt" data-toggle="dropdown" aria-expanded="true">
-                    Court
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" ng-model="resInfo.court">
-                    <li ng-repeat="court in courts">
-                        <a href>{{court}}</a>
-                    </li>
-                </ul>
-                
+        <div class="form-group">
+            <div class="courtselect">
+                <label for="resCourt">Court</label>
+                <div class="dropdown">
+                    <select ng-model="resInfo.court" ng-options="court.name for court in courts">Court</select>
+                </div>
             </div>
-        </div>
-        
-        <div class="form-group"> <!-- player type -->
-        
+            <div class="typeselect">
+                <label for="resPlayerType">Player Type</label>
+                <div class="dropdown">
+                    <select ng-model="resInfo.playerType" ng-options="type.name for type in types">Player Type</select>
+                </div>
+            </div>
         </div>
         
         <button class="btn btn-default" ng-click="submit()" ng-disabled="form.$invalid">Submit</button>
