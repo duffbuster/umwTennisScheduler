@@ -157,7 +157,6 @@ tennisApp
               };
 
               scope.visible = false;
-            console.log(scope.visible);
               scope.$on(AUTH_EVENTS.notAuthenticated, showDialog);
               scope.$on(AUTH_EVENTS.sessionTimeout, showDialog);
         }
