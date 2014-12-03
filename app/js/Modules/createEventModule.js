@@ -15,7 +15,7 @@ createEventModule.controller('createEventCtrl', function($scope, $http, Page, Ev
     };
 })
 
-.factory('EventService', function($http) {
+.factory('EventService', function($http, Session) {
     var eventService = {};
     
     eventService.newInfo = function() {
@@ -40,7 +40,7 @@ createEventModule.controller('createEventCtrl', function($scope, $http, Page, Ev
         info.allDay = false;
         info.isRepeating = false;
         return info;
-    }
+    };
     
     eventService.submit = function(info) {
         var eventInfo = {
@@ -52,6 +52,7 @@ createEventModule.controller('createEventCtrl', function($scope, $http, Page, Ev
             event_end_date: info.endDate.toString(), // format
             event_all_day: info.allDay ? 1 : 0,
             event_recurring: info.isRepeating ? 1 : 0,
+            event_created_by: Session.userId,
             event_created: new Date().toJSON()
         };
         console.log(eventInfo);

@@ -17,40 +17,40 @@ createResModule.controller('createResCtrl', function($scope, Page, ReservationSe
     };
     
     $scope.courts = [
-        {name: 'Indoor 1', sortName: 'indoor_1'},
-        {name: 'Indoor 2', sortName: 'indoor_2'},
-        {name: 'Indoor 3', sortName: 'indoor_3'},
-        {name: 'Indoor 4', sortName: 'indoor_4'},
-        {name: 'Indoor 5', sortName: 'indoor_5'},
-        {name: 'Indoor 6', sortName: 'indoor_6'},
-        {name: 'Outdoor 1', sortName: 'outdoor_1'},
-        {name: 'Outdoor 2', sortName: 'outdoor_2'},
-        {name: 'Outdoor 3', sortName: 'outdoor_3'},
-        {name: 'Outdoor 4', sortName: 'outdoor_4'},
-        {name: 'Outdoor 5', sortName: 'outdoor_5'},
-        {name: 'Outdoor 6', sortName: 'outdoor_6'},
-        {name: 'Outdoor 7', sortName: 'outdoor_7'},
-        {name: 'Outdoor 8', sortName: 'outdoor_8'},
-        {name: 'Outdoor 9', sortName: 'outdoor_9'},
-        {name: 'Outdoor 10', sortName: 'outdoor_10'},
-        {name: 'Outdoor 11', sortName: 'outdoor_11'},
-        {name: 'Outdoor 12', sortName: 'outdoor_12'},
+        { name: 'Indoor 1', sortName: 'indoor_1' },
+        { name: 'Indoor 2', sortName: 'indoor_2' },
+        { name: 'Indoor 3', sortName: 'indoor_3' },
+        { name: 'Indoor 4', sortName: 'indoor_4' },
+        { name: 'Indoor 5', sortName: 'indoor_5' },
+        { name: 'Indoor 6', sortName: 'indoor_6' },
+        { name: 'Outdoor 1', sortName: 'outdoor_1' },
+        { name: 'Outdoor 2', sortName: 'outdoor_2' },
+        { name: 'Outdoor 3', sortName: 'outdoor_3' },
+        { name: 'Outdoor 4', sortName: 'outdoor_4' },
+        { name: 'Outdoor 5', sortName: 'outdoor_5' },
+        { name: 'Outdoor 6', sortName: 'outdoor_6' },
+        { name: 'Outdoor 7', sortName: 'outdoor_7' },
+        { name: 'Outdoor 8', sortName: 'outdoor_8' },
+        { name: 'Outdoor 9', sortName: 'outdoor_9' },
+        { name: 'Outdoor 10', sortName: 'outdoor_10' },
+        { name: 'Outdoor 11', sortName: 'outdoor_11' },
+        { name: 'Outdoor 12', sortName: 'outdoor_12' },
     ];
         
     $scope.types = [
-        {name: 'Student', sortName: 'student'},
-        {name: 'Club Team', sortName: 'club_team'},
-        {name: 'Varsity', sortName: 'varsity'},
-        {name: 'PE Class', sortName: 'pe_class'},
-        {name: 'Fac/Staff', sortName: 'fac_staff'},
-        {name: 'Community', sortName: 'community'},
-        {name: 'Lesson', sortName: 'lesson'},
-        {name: 'Clinics/Camps', sortName: 'clinics_camps'},
-        {name: 'Tournament', sortName: 'tournament'}
+        { name: 'Student', sortName: 'student' },
+        { name: 'Club Team', sortName: 'club_team' },
+        { name: 'Varsity', sortName: 'varsity' },
+        { name: 'PE Class', sortName: 'pe_class' },
+        { name: 'Fac/Staff', sortName: 'fac_staff' },
+        { name: 'Community', sortName: 'community' },
+        { name: 'Lesson', sortName: 'lesson' },
+        { name: 'Clinics/Camps', sortName: 'clinics_camps' },
+        { name: 'Tournament', sortName: 'tournament' }
     ];
 })
 
-.factory('ReservationService', function($http) {
+.factory('ReservationService', function($http, Session) {
     var reservationService = {};
     
     reservationService.newInfo = function() {
@@ -79,7 +79,7 @@ createResModule.controller('createResCtrl', function($scope, Page, ReservationSe
         info.court = '';
         info.playerType = '';
         return info;
-    }
+    };
     
     reservationService.submit = function(info) {
         var resInfo = {
@@ -92,7 +92,9 @@ createResModule.controller('createResCtrl', function($scope, Page, ReservationSe
             res_email: info.email.trim(),
             res_num_players: info.numPlayers,
             res_court: info.court.sortName,
-            res_player_type: info.playerType.sortName
+            res_player_type: info.playerType.sortName,
+            res_created_by: Session.userId,
+            res_created: new Date().toJSON()
         };
         console.log(resInfo);
         
