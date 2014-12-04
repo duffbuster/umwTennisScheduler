@@ -46,21 +46,21 @@ createEventModule.controller('createEventCtrl', function($scope, $http, Page, Ev
         var eventInfo = {
             event_sort_name: info.name.trim().toLowerCase().replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s/g, "_"),
             event_name: info.name.trim(),
-            event_start_time: info.startTime.toLocaleTimeString, //format
-            event_end_time: info.endTime.toLocaleTimeString, // format
-            event_start_date: info.startDate.toString(), // format
-            event_end_date: info.endDate.toString(), // format
+            event_start_time: info.startTime.getHours() + ":" + info.startTime.getMinutes() + ":00",
+            event_end_time: info.endTime.getHours() + ":" + info.endTime.getMinutes() + ":00",
+            event_start_date: info.startDate.getFullYear() + "-" + (info.startDate.getMonth()+1) + "-" + info.startDate.getDate(),
+            event_end_date: info.endDate.getFullYear() + "-" + (info.endDate.getMonth()+1) + "-" + info.endDate.getDate(),
             event_all_day: info.allDay ? 1 : 0,
             event_recurring: info.isRepeating ? 1 : 0,
             event_created_by: Session.userId,
-            event_created: new Date().toJSON()
+            event_created: new Date().toISOString().slice(0, 19).replace('T', ' ')
         };
         console.log(eventInfo);
         /*return $http
             .post("/app/database/createEvent.php", eventInfo)
-            .success(function(data) {
+            .then(function(data) {
                 var result = data;
-                return result;
+                console.log(result);
             });*/
     };
     

@@ -85,24 +85,24 @@ createResModule.controller('createResCtrl', function($scope, Page, ReservationSe
         var resInfo = {
             res_sort_name: info.name.trim().toLowerCase().replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s/g, "_"),
             res_name: info.name.trim(),
-            res_date: info.date, // formatting
-            res_start_time: info.startTime, // formatting
-            res_end_time: info.endTime, // formatting
+            res_date: info.date.getFullYear() + "-" + (info.date.getMonth()+1) + "-" + info.date.getDate(),
+            res_start_time: info.startTime.getHours() + ":" + info.startTime.getMinutes() + ":00",
+            res_end_time: info.endTime.getHours() + ":" + info.endTime.getMinutes() + ":00",
             res_phone: info.phone.trim().replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s/g, ""),
             res_email: info.email.trim(),
             res_num_players: info.numPlayers,
             res_court: info.court.sortName,
             res_player_type: info.playerType.sortName,
             res_created_by: Session.userId,
-            res_created: new Date().toJSON()
+            res_created: new Date().toISOString().slice(0, 19).replace('T', ' ')
         };
         console.log(resInfo);
         
         /*return $http
             .post("/app/database/createReservation.php", resInfo)
-            .success(function(data) {
+            .then(function(data) {
                 var result = data;
-                return result;
+                console.log(result);
             });*/
     };
     
