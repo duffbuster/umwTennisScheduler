@@ -20,8 +20,8 @@
         event_sort_name, event_name, event_start_date, event_end_date, event_start_time, 
         event_end_time, event_all_day, event_recurring, 
         event_created_by, event_created) 
-        VALUES (':sortname', ':name', ':startdate', ':enddate', ':starttime', 
-        ':endtime', ':allday', ':recurring', ':createdby', ':created')"
+        VALUES (:sortname, :name, :startdate, :enddate, :starttime, 
+        :endtime, :allday, :recurring, :createdby, :created)"
     );
 
     // Bind data stuff
