@@ -15,7 +15,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                     url: "/app/database/getEvents.php",
                     method: "GET"
                 }).success(function(data) {
-                    var eventCount = data.lenght();
+                    var eventCount = data.length();
                     var source = [];
                     var jsonData = [];
                     for (var i = 0; i < eventCount; i++) {
