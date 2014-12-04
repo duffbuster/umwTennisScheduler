@@ -1,7 +1,7 @@
 var viewEventsModule = angular.module('viewEventsModule', []);
 
 viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
-    Page.setTitle('View Events')
+    Page.setTitle('View Events');
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -17,10 +17,11 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                 }).success(function(data) {
                     var events = data;
                     return events;
-                })
+                });
             }
         }
     ];
+    console.log($scope.eventSources);
     
     // Will eventually need something to delete an event
     
