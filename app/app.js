@@ -2,6 +2,7 @@ var tennisApp = angular.module('tennisCenterApp', [
     /*'ui.calendar', */
     'loginModule',
     'ngRoute',
+    'ngCookies',
     'ui.bootstrap',
     'createEventModule',
     'createResModule',
