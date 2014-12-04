@@ -98,12 +98,12 @@ createResModule.controller('createResCtrl', function($scope, Page, ReservationSe
         };
         console.log(resInfo);
         
-        /*return $http
+        return $http
             .post("/app/database/createReservation.php", resInfo)
             .then(function(data) {
                 var result = data;
                 console.log(result);
-            });*/
+            });
     };
     
     return reservationService;
