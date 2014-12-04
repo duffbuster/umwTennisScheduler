@@ -134,7 +134,7 @@ tennisApp
     $rootScope.$on('$routeChangeStart', function (event, next) {
         // cannot read property 'authorizedRoles' of undefined
         var authorizedRoles = next.data.authorizedRoles;
-        if (!AuthService.isAuthorized(authorizedRoles)) { 
+        /*if (!AuthService.isAuthorized(authorizedRoles)) { 
             event.preventDefault();
             if (AuthService.isAuthenticated()) {
                 // user is not allowed
@@ -143,7 +143,7 @@ tennisApp
                 // user is not logged in
                 $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
             }
-        }
+        }*/
     });
 })
 // redirects to the login form
@@ -183,65 +183,31 @@ tennisApp
     }
   };
 })
-// Put these in seperate files
-.controller('timeCtrl', function($scope, $log) {
-    $scope.mytime = new Date();
-
-    $scope.hstep = 1;
-    $scope.mstep = 1;
-
-    $scope.options = {
-        hstep: [1, 2, 3],
-        mstep: [1, 5, 10, 15, 25, 30]
-    };
-
-    $scope.ismeridian = true;
-    $scope.toggleMode = function() {
-        $scope.ismeridian = ! $scope.ismeridian;
-    };
-
-    $scope.update = function() {
-        var d = new Date();
-        d.setHours( 14 );
-        d.setMinutes( 0 );
-        $scope.mytime = d;
-    };
-
-    $scope.changed = function () {
-    // gets here
-//        console.log('Time changed to: ' + $scope.mytime);
-    };
-
-    $scope.clear = function() {
-        $scope.mytime = null;
-    };
-}).controller('DatepickerCtrl', function($scope) {
-    $scope.today = function() {
+.controller('DatepickerCtrl', function($scope) {
+/*    $scope.today = function() {
         $scope.dt = new Date();
     };
     $scope.today();
 
-    $scope.clear = function () {
-        $scope.dt = null;
-    };
-
-    // Disable weekend selection
-    $scope.disabled = function(date, mode) {
-        return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-    };
-
     $scope.toggleMin = function() {
         $scope.minDate = $scope.minDate ? null : new Date();
     };
-    $scope.toggleMin();
-
-    $scope.open = function($event) {
+    $scope.toggleMin();*/
+    
+    $scope.startOpen = function($event) {
         $event.preventDefault();
         $event.stopPropagation();
 
-        $scope.opened = true;
+        $scope.startOpened = true;
     };
+    
+    $scope.endOpen = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
 
+        $scope.endOpened = true;
+    };
+    
     $scope.dateOptions = {
         formatYear: 'yy',
         startingDay: 1

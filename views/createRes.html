@@ -13,24 +13,24 @@
                 <div class="col-xs-6">
                     <label for="resDate">Reservation Date</label>
                     <p class="input-group">
-                        <input class="form-control" type="text" ng-model="resInfo.date" id="resDate" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                        <input class="form-control" type="text" ng-model="resInfo.date" id="resDate" datepicker-popup="{{format}}" is-open="startOpened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default" ng-click="startOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                     </p>
                 </div>
             </div> 
         </div>
         
-        <div class="form-group" ng-controller="timeCtrl">
+        <div class="form-group">
             <div class="row">
                 <div class="col-xs-6">
                     <label>Start Time</label>
-                    <timepicker ng-model="resInfo.startTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
+                    <timepicker ng-model="resInfo.startTime" show-meridian="true"></timepicker>
                 </div>
                 <div class="endTime">
                     <label>End Time</label>
-                    <timepicker ng-model="resInfo.endTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
+                    <timepicker ng-model="resInfo.endTime" show-meridian="true"></timepicker>
                 </div>
             </div>
         </div>
