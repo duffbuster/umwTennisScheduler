@@ -4,14 +4,14 @@ createEventModule.controller('createEventCtrl', function($scope, $http, Page, Ev
     Page.setTitle('Create Event');
     $scope.isLoginPage = false;
     
-    $scope.info = EventService.newInfo();
+    $scope.eventInfo = EventService.newInfo();
     
     $scope.clear = function() {
-        $scope.info = EventService.clear($scope.info);
+        $scope.eventInfo = EventService.clear($scope.eventInfo);
     };
     
     $scope.submit = function() {
-        EventService.submit($scope.info);
+        EventService.submit($scope.eventInfo);
     };
 })
 
