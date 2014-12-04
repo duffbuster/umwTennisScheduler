@@ -1,7 +1,7 @@
 var loginModule = angular.module('loginModule', []);
 
 loginModule
-.controller('loginCtrl', function($scope, $rootScope, $location, AUTH_EVENTS, AuthService, Page, Session) {
+.controller('loginCtrl', function($scope, $rootScope, cookieService, $location, AUTH_EVENTS, AuthService, Page, Session) {
     $scope.isLoginPage = true;
     Page.setTitle('Login');
     
@@ -26,6 +26,7 @@ loginModule
     };
     $scope.logout = function() {
         Session.destroy();
+        cookieService.destroy();
     };
 })
 .factory('AuthService', function($http, Session) {

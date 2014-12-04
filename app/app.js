@@ -97,7 +97,7 @@ tennisApp
     };
 })
 // Application controller
-.controller('applicationCtrl', function($scope, $cookieStore, USER_ROLES, AuthService) {
+.controller('applicationCtrl', function($scope, cookieService, USER_ROLES, AuthService) {
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;
@@ -105,9 +105,23 @@ tennisApp
  
     $scope.setCurrentUser = function (user) {
         $scope.currentUser = user;
-        if ($scope.currentUser === null) $cookieStore.remove('user');
-        else $cookieStore.put('user', $scope.currentUser);
+        cookieService.setUser($scope.currentUser);
     };
+})
+// Store user info in browser cookies
+.service('cookieService', function($cookieStore) {
+    var cookieService = {};
+    cookieService.user = null;
+    cookieService.setUser = function(newUser) {
+        cookieService.user = newUser;
+        if (cookieService.user === null) $cookieStore.remove('user');
+        else $cookieStore.put('user', cookieService.user);
+    };
+    cookieService.destroy = function() {
+        if (cookieService.user === null) console.error("There is no god...");
+        else $cookieStore.remove('user');
+    };
+    return cookieService;
 })
 // does some fancy http stuff
 .config(function ($httpProvider) {
@@ -149,11 +163,6 @@ tennisApp
         }
     });
 })
-
-/*.service('sessionCookies', function($cookieStore, $location, $filter, Session) {
-    var cookieService = {};
-    cookieService.user = null;
-})*/
 // redirects to the login form
 .directive('loginDialog', function(AUTH_EVENTS) {
     return {
