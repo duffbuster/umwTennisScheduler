@@ -96,7 +96,7 @@ tennisApp
     };
 })
 // Application controller
-.controller('applicationCtrl', function($scope, USER_ROLES, AuthService) {
+.controller('applicationCtrl', function($scope, $cookieStore, USER_ROLES, AuthService) {
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;
@@ -104,6 +104,8 @@ tennisApp
  
     $scope.setCurrentUser = function (user) {
         $scope.currentUser = user;
+        if ($scope.currentUser === null) $cookieStore.remove('user');
+        else $cookieStore.put('user', $scope.currentUser);
     };
 })
 // does some fancy http stuff
@@ -146,6 +148,11 @@ tennisApp
         }
     });
 })
+
+/*.service('sessionCookies', function($cookieStore, $location, $filter, Session) {
+    var cookieService = {};
+    cookieService.user = null;
+})*/
 // redirects to the login form
 .directive('loginDialog', function(AUTH_EVENTS) {
     return {

@@ -47,7 +47,7 @@
     
     <!-- navbar -->
     <div ng-include="'/views/partials/navbar.html'"></div>
-    <div ng-if="currentUser">Welcome, {{ currentUser.user_username }}</div>
+    <div ng-if="currentUser">Welcome, {{ $cookieStore.user.user_username }}</div>
     <div ng-if="isAuthorized(userRoles.admin)">You're an Admin.</div>
     <!-- page header -->
     <div class="page-header"><div class="container"><h1 ng-controller="titleCtrl">{{ Page.title() }}</h1></div></div>

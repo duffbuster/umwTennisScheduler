@@ -33,15 +33,16 @@
             <label for="isAllDay">All Day</label>
             <input type="checkbox" ng-model="info.allDay" id="isAllDay"/>
         </div>
+        <!-- for some wierd reason, this doesn't respond to the clear function -->
         <div class="form-group">
             <div class="row">
                 <div class="col-xs-6">
                     <label>Start Time</label>
-                    <timepicker ng-model="info.startTime" show-meridian="true"></timepicker>
+                    <timepicker ng-model="resInfo.startTime" show-meridian="true"></timepicker>
                 </div>
-                <div ng-show="!info.allDay" class="col-xs-6">
+                <div class="endTime">
                     <label>End Time</label>
-                    <timepicker ng-model="info.endTime" show-meridian="true"></timepicker>
+                    <timepicker ng-model="resInfo.endTime" show-meridian="true"></timepicker>
                 </div>
             </div>
         </div>
