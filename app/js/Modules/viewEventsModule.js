@@ -15,7 +15,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                     url: "/app/database/getEvents.php",
                     method: "GET"
                 }).success(function(data) {
-                    var eventCount = data.length();
+                    var eventCount = data.length;
                     var source = [];
                     var jsonData = [];
                     for (var i = 0; i < eventCount; i++) {
@@ -35,9 +35,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                 });
             }
         }
-    ];
-    console.log($scope.eventSources);
-    
+    ];    
     // Will eventually need something to delete an event
     
     /* config object */
