@@ -113,11 +113,13 @@ tennisApp
     var cookieService = {};
     cookieService.user = null;
     cookieService.setUser = function(newUser) {
+        console.log("setting cookies");
         cookieService.user = newUser;
         if (cookieService.user === null) $cookieStore.remove('user');
         else $cookieStore.put('user', cookieService.user);
     };
     cookieService.destroy = function() {
+        console.log("destroying cookies");
         if (cookieService.user === null) console.error("There is no god...");
         else $cookieStore.remove('user');
     };
