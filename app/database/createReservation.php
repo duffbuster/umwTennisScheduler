@@ -5,18 +5,18 @@
     $request = json_decode($postdata);
     
     // Data
-    $sortname = $request->res_sort_name,
-    $name = $request->res_name,
-    $date = $request->res_date,
-    $starttime = $request->res_start_time,
-    $endtime = $request->res_end_time,
-    $phone = $request->res_phone,
-    $email = $request->res_email,
-    $numplayers = $request->res_num_players,
-    $court = $request->num_players,
-    $playertype = $request->res_player_type,
-    $createdby = $request->res_created_by,
-    $created = $request->res_created
+    $sortname = $request->res_sort_name;
+    $name = $request->res_name;
+    $date = $request->res_date;
+    $starttime = $request->res_start_time;
+    $endtime = $request->res_end_time;
+    $phone = $request->res_phone;
+    $email = $request->res_email;
+    $numplayers = $request->res_num_players;
+    $court = $request->num_players;
+    $playertype = $request->res_player_type;
+    $createdby = $request->res_created_by;
+    $created = $request->res_created;
     
     $database->query("INSERT INTO reservations (
         res_sortname, res_name, res_date, res_start_time, 

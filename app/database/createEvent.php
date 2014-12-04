@@ -5,16 +5,16 @@
     $request = json_decode($postdata);
     
     // Data
-    $sortname = $request->event_sort_name,
-    $name = $request->event_name,
-    $startdate = $request->event_start_date,
-    $enddate = $request->event_end_date
-    $starttime = $request->event_start_time,
-    $endtime = $request->event_end_time,
-    $allday = $request->event_all_day,
-    $recurring = $request->event_recurring,
-    $createdby = $request->event_created_by,
-    $created = $request->event_created
+    $sortname = $request->event_sort_name;
+    $name = $request->event_name;
+    $startdate = $request->event_start_date;
+    $enddate = $request->event_end_date;
+    $starttime = $request->event_start_time;
+    $endtime = $request->event_end_time;
+    $allday = $request->event_all_day;
+    $recurring = $request->event_recurring;
+    $createdby = $request->event_created_by;
+    $created = $request->event_created;
     
     $database->query("INSERT INTO events (
         event_sortname, event_name, event_start_date, event_end_date, event_start_time, 
