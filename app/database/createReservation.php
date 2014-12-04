@@ -19,7 +19,7 @@
     $created = $request->res_created;
     
     $database->query("INSERT INTO reservations (
-        res_sortname, res_name, res_date, res_start_time, 
+        res_sort_name, res_name, res_date, res_start_time, 
         res_end_time, res_phone, res_email, res_num_players, 
         res_court, res_player_type, res_created_by, res_created) 
         VALUES (':sortname', ':name', ':date', ':starttime', 
