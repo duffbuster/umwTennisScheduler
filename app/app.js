@@ -154,7 +154,7 @@ tennisApp
     $rootScope.$on('$routeChangeStart', function (event, next) {
         // cannot read property 'authorizedRoles' of undefined
         var authorizedRoles = next.data.authorizedRoles;
-        /*if (!AuthService.isAuthorized(authorizedRoles)) { 
+        if (!AuthService.isAuthorized(authorizedRoles)) { 
             event.preventDefault();
             if (AuthService.isAuthenticated()) {
                 // user is not allowed
@@ -163,7 +163,7 @@ tennisApp
                 // user is not logged in
                 $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
             }
-        }*/
+        }
     });
 })
 // redirects to the login form
