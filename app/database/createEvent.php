@@ -24,7 +24,7 @@
         ':endtime', ':allday', ':recurring', ':createdby', ':created')"
     );
 
-    // Bind data
+    // Bind data stuff
     $database->bind(':sortname', $sortname);
     $database->bind(':name', $name);
     $database->bind(':startdate', $startdate);
