@@ -28,7 +28,7 @@
     $database->bind(':sortname', $sortname);
     $database->bind(':name', $name);
     $database->bind(':startdate', $startdate);
-    $database->bind(':enddate', $enddate)
+    $database->bind(':enddate', $enddate);
     $database->bind(':starttime', $starttime);
     $database->bind(':endtime', $endtime);
     $database->bind(':allday', $allday);
