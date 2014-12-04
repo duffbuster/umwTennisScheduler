@@ -1,5 +1,5 @@
 var tennisApp = angular.module('tennisCenterApp', [
-    /*'ui.calendar', */
+    'ui.calendar', 
     'loginModule',
     'ngRoute',
     'ngCookies',
