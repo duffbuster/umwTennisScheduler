@@ -56,12 +56,12 @@ createEventModule.controller('createEventCtrl', function($scope, $http, Page, Ev
             event_created: new Date().toISOString().slice(0, 19).replace('T', ' ')
         };
         console.log(eventInfo);
-        /*return $http
+        return $http
             .post("/app/database/createEvent.php", eventInfo)
             .then(function(data) {
                 var result = data;
                 console.log(result);
-            });*/
+            });
     };
     
     return eventService;

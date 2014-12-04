@@ -109,6 +109,7 @@ tennisApp
     };
 })
 // Store user info in browser cookies
+// works, but doesn't keep data after refresh
 .service('cookieService', function($cookieStore) {
     var cookieService = {};
     cookieService.user = null;
