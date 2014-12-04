@@ -13,7 +13,7 @@
     $phone = $request->res_phone;
     $email = $request->res_email;
     $numplayers = $request->res_num_players;
-    $court = $request->num_players;
+    $court = $request->res_court;
     $playertype = $request->res_player_type;
     $createdby = $request->res_created_by;
     $created = $request->res_created;
