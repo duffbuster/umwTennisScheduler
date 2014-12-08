@@ -7,6 +7,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
     var m = date.getMonth();
     var y = date.getFullYear();
 
+    $scope.getEvents();
     /* event source, grabs events from the database */
     $scope.eventSources = [
         /*{
