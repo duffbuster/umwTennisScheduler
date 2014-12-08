@@ -10,9 +10,9 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
     /* event source, grabs events from the database */
     // TODO: fix this
     $scope.eventSources = [
-        {
+        /*{
             events: function() {
-                var data = $.ajax({
+                var data = $http({
                     url: '/app/database/getEvents.php',
                     method: 'GET',
                     dataType: 'json',
@@ -26,7 +26,6 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                             if (!source[i])
                                 source[i] = [];
                             source[i] = '/app/database/getEvents.php?e=' + eventId;
-
                             jsonData.push({
                                 url: source[i],
                                 method: 'GET',
@@ -39,7 +38,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                     }
                 });
             }
-        }
+        }*/
     ];    
     // Will eventually need something to delete an event
     
