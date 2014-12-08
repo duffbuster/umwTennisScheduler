@@ -30,6 +30,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                             error: function() { alert('There was an error loading calendar data.'); }
                         });
                     }*/
+                    var jsonData = data;
                     console.log(jsonData);
                     return jsonData;
                 });
