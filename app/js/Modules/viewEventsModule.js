@@ -15,7 +15,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                     url: '/app/database/getEvents.php',
                     method: 'GET'
                 }).success(function(data) {
-                    console.log(data);
+//                    console.log(data); // correct
                     var eventCount = data.length;
                     var source = [];
                     var jsonData = [];
@@ -26,9 +26,11 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                         source[i] = '/app/database/getEvents.php?e=' + eventId;
                         
                         jsonData.push({
-                            url: source[i],
-                            method: 'GET',
-                            error: function() { alert('There was an error loading calendar data.'); }
+                            $http({
+                                url: source[i],
+                                method: 'GET',
+                                error: function() { alert('There was an error loading calendar data.'); }
+                            });
                         });
                     }
 //                    var jsonData = data;
