@@ -42,7 +42,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                 var eventdata = data;
                 return eventdata;
             });
-        $scope.eventSources.push($scope.events);
+        $scope.eventSources = $scope.events.value.data;
         console.log($scope.events);
     }
     $scope.getEvents();
