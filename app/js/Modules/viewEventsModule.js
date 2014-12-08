@@ -9,7 +9,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
 
     /* event source, grabs events from the database */
     $scope.eventSources = [
-        {
+        /*{
             events: function() {
                 var eventdata = $http.get('/app/database/getEvents.php')
                     .success(function(eventdata) {
@@ -33,8 +33,18 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                         return jsonData;
                     });
             }
-        }
-    ];    
+        }*/
+    ];
+    
+    $scope.getEvents = function() {
+        $scope.events = $http.get('/app/database/getEvents.php')
+            .success(function(data) {
+                var eventdata = data;
+                return eventdata;
+            });
+        $scope.eventSources.push($scope.events);
+        console.log($scope.eventSources);
+    }
     // Will eventually need something to delete an event
     
     /* config object */
