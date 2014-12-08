@@ -22,7 +22,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                         var eventId = data[i].event_id;
                         if (!source[i])
                             source[i] = [];
-                        source[i] = '/app/database/getEvents.php?e=' + eventId; // This doesn't work, because I'm getting the whole list of events back from the get. I need to just go through the json and put it in here.
+                        source[i] = '/app/database/getEvents.php?e=' + eventId;
                         
                         jsonData.push({
                             url: source[i],
@@ -37,7 +37,6 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
             }
         }
     ];    
-    console.log($scope.eventSources);
     // Will eventually need something to delete an event
     
     /* config object */
