@@ -36,7 +36,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                         console.log(jsonData);
                         return jsonData;
                     }
-            }
+            });
         }
     ];    
     // Will eventually need something to delete an event
