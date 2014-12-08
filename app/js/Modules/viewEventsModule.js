@@ -11,9 +11,9 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
     $scope.eventSources = [
         {
             events: function() {
-                var data = $http.get({
-                    url: "/app/database/getEvents.php",
-                    method: "GET"
+                var data = $http({
+                    url: '/app/database/getEvents.php',
+                    method: 'GET'
                 }).success(function(data) {
                     console.log(data);
                     var eventCount = data.length;
@@ -27,7 +27,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                         
                         jsonData.push({
                             url: source[i],
-                            method: "GET",
+                            method: 'GET',
                             error: function() { alert('There was an error loading calendar data.'); }
                         });
                     }
