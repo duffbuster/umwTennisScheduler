@@ -31,12 +31,13 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                         });
                     }*/
                     var jsonData = data;
-                    console.log(jsonData);
+//                    console.log(jsonData);
                     return jsonData;
                 });
             }
         }
     ];    
+    console.log($scope.eventSources);
     // Will eventually need something to delete an event
     
     /* config object */
