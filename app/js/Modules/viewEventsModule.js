@@ -10,7 +10,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
     /* event source, grabs events from the database */
     $scope.eventSources = [
         {
-            events: function() {
+            events: function() { // I'm reaching here
                 var data = $.ajax({
                     url: '/app/database/getEvents.php',
                     method: 'GET',
@@ -35,7 +35,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
     //                    var jsonData = data;
                         console.log(jsonData);
                         return jsonData;
-                    };
+                    }
             }
         }
     ];    
