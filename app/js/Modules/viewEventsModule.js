@@ -7,7 +7,7 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
     var m = date.getMonth();
     var y = date.getFullYear();
 
-    /* event source that contains custom events on the scope */
+    /* event source, grabs events from the database */
     $scope.eventSources = [
         {
             events: function() {
@@ -15,21 +15,21 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
                     url: "/app/database/getEvents.php",
                     method: "GET"
                 }).success(function(data) {
-                    var eventCount = data.length;
+                    /*var eventCount = data.length;
                     var source = [];
                     var jsonData = [];
                     for (var i = 0; i < eventCount; i++) {
                         var eventId = data[i].event_id;
                         if (!source[i])
                             source[i] = [];
-                        source[i] = '/app/database/getEvents.php?e=' + eventId;
+                        source[i] = '/app/database/getEvents.php?e=' + eventId; // This doesn't work, because I'm getting the whole list of events back from the get. I need to just go through the json and put it in here.
                         
                         jsonData.push({
                             url: source[i],
                             method: "GET",
                             error: function() { alert('There was an error loading calendar data.'); }
                         });
-                    }
+                    }*/
                     console.log(jsonData);
                     return jsonData;
                 });
