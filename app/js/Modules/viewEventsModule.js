@@ -8,9 +8,10 @@ viewEventsModule.controller('viewEventsCtrl', function($scope, Page, $http) {
     var y = date.getFullYear();
 
     /* event source, grabs events from the database */
+    // TODO: fix this
     $scope.eventSources = [
         {
-            events: function() { // I'm reaching here
+            events: function() {
                 var data = $.ajax({
                     url: '/app/database/getEvents.php',
                     method: 'GET',

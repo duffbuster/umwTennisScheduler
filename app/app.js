@@ -232,4 +232,10 @@ tennisApp
             $scope.events = data;
         });
     };
+    
+    $scope.getReservations = function() {
+        $http.get("/app/database/getReservations.php").success(function(data) {
+            $scope.reservations = data;
+        });
+    }
 });
